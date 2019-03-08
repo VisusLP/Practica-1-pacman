@@ -132,7 +132,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"], ["ghostPosX1","NUMERIC"],["ghostPosY1","NUMERIC"], ["ghostPosX2","NUMERIC"],
         ["ghostPosY2","NUMERIC"], ["ghostPosX3","NUMERIC"],["ghostPosY3","NUMERIC"], ["ghostPosX4","NUMERIC"],["ghostPosY4","NUMERIC"],
         ["LivingGhost1","{0,1}"], ["LivingGhost2","{0,1}"], ["LivingGhost3","{0,1}"], ["LivingGhost4","{0,1}"],["Score","NUMERIC"],["NextScore","NUMERIC"],
-        ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West}"]]
+        ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
         
         file = open("test_othermaps_keyboard.arff", "a")
@@ -184,7 +184,10 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                 counter += 1
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
-        prevState.append(gameState.getDistanceNearestFood())
+        if (gameState.getDistanceNearestFood() == "None"):
+            prevState.append("99999")
+        else:
+            prevState.append(gameState.getDistanceNearestFood())
         prevState.append("Stop")
 
     def createWekaFile(self, attributesList):
@@ -403,7 +406,7 @@ class BasicAgentAA(BustersAgent):
         ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"], ["ghostPosX1","NUMERIC"],["ghostPosY1","NUMERIC"], ["ghostPosX2","NUMERIC"],
         ["ghostPosY2","NUMERIC"], ["ghostPosX3","NUMERIC"],["ghostPosY3","NUMERIC"], ["ghostPosX4","NUMERIC"],["ghostPosY4","NUMERIC"],
         ["LivingGhost1","{0,1}"], ["LivingGhost2","{0,1}"], ["LivingGhost3","{0,1}"], ["LivingGhost4","{0,1}"],["Score","NUMERIC"],["NextScore","NUMERIC"],
-        ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West}"]]
+        ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
         
         file = open("test_othermaps_tutorial1.arff", "a")
@@ -455,7 +458,10 @@ class BasicAgentAA(BustersAgent):
                 counter += 1
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
-        prevState.append(gameState.getDistanceNearestFood())
+        if (gameState.getDistanceNearestFood() == "None"):
+            prevState.append("99999")
+        else:
+            prevState.append(gameState.getDistanceNearestFood())
         prevState.append("Stop")
 
     def createWekaFile(self, attributesList):
