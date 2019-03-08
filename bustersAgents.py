@@ -114,17 +114,19 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
     def __init__(self, index = 0, inference = "KeyboardInference", ghostAgents = None):
         KeyboardAgent.__init__(self, index)
         BustersAgent.__init__(self, index, inference, ghostAgents)
+        self.countActions = 0
 
     def getAction(self, gameState):
         return BustersAgent.getAction(self, gameState)
 
     def chooseAction(self, gameState):
         global last_move
+        self.countActions = self.countActions + 1
         last_move = KeyboardAgent.getAction(self, gameState)
         return last_move
 
     def printLineData(self, gameState):
-        global last_move
+        global prevState
         if(os.path.isfile("test_othermaps_keyboard.arff") == False):
             attributesList = [["pacPosX", "NUMERIC"],["pacPosY", "NUMERIC"], ["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], 
         ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"], ["ghostPosX1","NUMERIC"],["ghostPosY1","NUMERIC"], ["ghostPosX2","NUMERIC"],
@@ -134,8 +136,18 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             self.createWekaFile(attributesList)
         
         file = open("test_othermaps_keyboard.arff", "a")
-            
-        file.write("%d,%d," % (gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1]))
+        if self.countActions > 1:
+            prevState[20] = gameState.getScore()
+            prevState[22] = gameState.data.agentStates[0].getDirection()
+            while(len(prevState) > 0):
+                x = prevState.pop(0);               
+                file.write("%s" % (x))
+                if len(prevState) != 0:
+                    file.write(",")
+            file.write("\n")
+        file.close()
+        prevState.append(gameState.getPacmanPosition()[0])
+        prevState.append(gameState.getPacmanPosition()[1])
         legalNorth = 0
         legalSouth = 0
         legalEast = 0
@@ -152,26 +164,28 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                 legalWest = 1
             if l == "Stop":
                 legalStop = 1
-        file.write("%d,%d,%d,%d,%d," % (legalNorth, legalSouth, legalEast, legalWest, legalStop))
+        prevState.append(legalNorth)
+        prevState.append(legalSouth)
+        prevState.append(legalEast)
+        prevState.append(legalWest)
+        prevState.append(legalStop)
         for g in gameState.getGhostPositions():
-            file.write("%d,%d," % (g[0],g[1]))
+            prevState.append(g[0])
+            prevState.append(g[1])
         counter = 0
         for h in gameState.getLivingGhosts():
             if counter == 0:
                 counter += 1
             else:
                 if h:
-                    file.write("1,")
+                    prevState.append("1")
                 else:
-                    file.write("0,")
-
+                    prevState.append("0")
                 counter += 1
-        file.write("%s," % (gameState.getScore()))
-        file.write("%s," % (gameState.getScore()-1))
-        file.write("%s," % (gameState.getDistanceNearestFood()))
-        file.write("%s" % (last_move))
-        file.write("\n")
-        file.close()
+        prevState.append(gameState.getScore())
+        prevState.append(gameState.getScore()-1)
+        prevState.append(gameState.getDistanceNearestFood())
+        prevState.append("Stop")
 
     def createWekaFile(self, attributesList):
         file = open("test_othermaps_keyboard.arff", "a")
