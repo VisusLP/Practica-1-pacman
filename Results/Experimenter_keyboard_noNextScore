@@ -1,0 +1,26 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 2 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   2
+Resultsets: 7
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       3/10/19 12:00 PM
+
+
+Dataset                   (1) rules.Ze | (2) rules (3) bayes (4) trees (5) lazy. (6) lazy. (7) lazy.
+----------------------------------------------------------------------------------------------------
+test_othermaps_keyboard-w(100)   34.11 |   70.21 v   58.09 v   72.09 v   74.71 v   70.84 v   68.36 v
+test_samemaps_keyboard-we(100)   30.61 |   72.29 v   56.99 v   73.07 v   75.87 v   72.65 v   70.05 v
+----------------------------------------------------------------------------------------------------
+                               (v/ /*) |   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)
+
+
+Key:
+(1) rules.ZeroR '' 48055541465867954
+(2) rules.PART '-M 2 -C 0.25 -Q 1' 8121455039782598361
+(3) bayes.NaiveBayes '' 5995231201785697655
+(4) trees.J48 '-C 0.25 -M 2' -217733168393644444
+(5) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(6) lazy.IBk '-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(7) lazy.IBk '-K 5 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+
