@@ -1,0 +1,35 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 2 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   2
+Resultsets: 16
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       22/03/19 16:15
+
+
+Dataset                   (1) rules.PA | (2) trees (3) lazy. (4) lazy. (5) lazy. (6) lazy. (7) meta. (8) meta. (9) meta. (10) meta (11) meta (12) rule (13) tree (14) tree (15) tree (16) func
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_othermaps_keyboard-w(100)   70.21 |   72.09     74.71 v   70.84     68.36     74.63 v   72.46     73.19     75.21 v   67.28     73.32     70.25     73.94     76.15 v   71.96     72.09  
+test_samemaps_keyboard-we(100)   72.29 |   73.07     75.87     72.65     70.05     77.10 v   72.91     73.04     77.79 v   72.12     73.80     68.93     74.18     78.57 v   73.63     71.37  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                               (v/ /*) |   (0/2/0)   (1/1/0)   (0/2/0)   (0/2/0)   (2/0/0)   (0/2/0)   (0/2/0)   (2/0/0)   (0/2/0)   (0/2/0)   (0/2/0)   (0/2/0)   (2/0/0)   (0/2/0)   (0/2/0)
+
+
+Key:
+(1) rules.PART '-M 2 -C 0.25 -Q 1' 8121455039782598361
+(2) trees.J48 '-C 0.25 -M 2' -217733168393644444
+(3) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(4) lazy.IBk '-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(5) lazy.IBk '-K 5 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(6) lazy.KStar '-B 20 -M a' 332458330800479083
+(7) meta.Bagging '-P 100 -S 1 -num-slots 1 -I 10 -W trees.REPTree -- -M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0' -115879962237199703
+(8) meta.ClassificationViaRegression '-W trees.M5P -- -M 4.0' 4500023123618669859
+(9) meta.RandomCommittee '-S 1 -num-slots 1 -I 10 -W trees.RandomTree -- -K 0 -M 1.0 -V 0.001 -S 1' -9204394360557300093
+(10) meta.RandomizableFilteredClassifier '-S 1 -F \"unsupervised.attribute.RandomProjection -N 10 -R 42 -D Sparse1\" -W lazy.IBk -- -K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -4523466618555717333
+(11) meta.RandomSubSpace '-P 0.5 -S 1 -num-slots 1 -I 10 -W trees.REPTree -- -M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0' 1278172513912424947
+(12) rules.JRip '-F 3 -N 2.0 -O 2 -S 1' -6589312996832147161
+(13) trees.LMT '-I -1 -M 15 -W 0.0' -1113212459618104943
+(14) trees.RandomForest '-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1' 1116839470751428698
+(15) trees.RandomTree '-K 0 -M 1.0 -V 0.001 -S 1' -9051119597407396024
+(16) functions.MultilayerPerceptron '-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a' -5990607817048210779
+

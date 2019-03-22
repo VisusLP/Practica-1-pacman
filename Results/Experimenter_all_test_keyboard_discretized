@@ -1,0 +1,62 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 2 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   2
+Resultsets: 43
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       22/03/19 16:52
+
+
+Dataset                   (1) rules.Ze | (2) rules (3) bayes (4) trees (5) lazy. (6) lazy. (7) lazy. (8) trees (9) bayes (10) baye (11) baye (12) func (13) func (14) func (15) lazy (16) lazy (17) meta (18) meta (19) meta (20) meta (21) meta (22) meta (23) meta (24) meta (25) meta (26) meta (27) meta (28) meta (29) meta (30) meta (31) meta (32) meta (33) meta (34) misc (35) rule (36) rule (37) rule (38) tree (39) tree (40) tree (41) tree (42) tree (43) func
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_samemaps_keyboard-we(100)   30.61 |   72.36 v   64.23 v   71.69 v   75.44 v   69.92 v   68.85 v   64.11 v   64.71 v   30.61     64.23 v   73.52 v   72.33 v   74.13 v   75.92 v   50.44 v   37.72 v   65.31 v   71.11 v   74.37 v   30.61     71.69 v   70.00 v   70.07 v   72.49 v   70.55 v   30.61     76.28 v   73.91 v   71.55 v   30.61     30.61     30.61     30.61     63.27 v   69.86 v   53.73 v   37.72 v   76.85 v   77.35 v   74.59 v   67.17 v   77.33 v
+test_othermaps_keyboard-w(100)   34.11 |   71.45 v   63.32 v   70.90 v   73.10 v   70.23 v   68.42 v   63.00 v   64.02 v   34.11     63.32 v   71.34 v   70.09 v   71.06 v   75.27 v   55.37 v   44.38 v   65.54 v   71.74 v   73.50 v   34.11     70.90 v   68.37 v   68.33 v   72.09 v   70.15 v   34.11     73.43 v   70.27 v   71.73 v   34.11     34.11     34.11     34.11     61.83 v   69.26 v   49.57 v   44.38 v   73.14 v   75.11 v   70.91 v   66.15 v   74.34 v
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                               (v/ /*) |   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (0/2/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (0/2/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (0/2/0)   (2/0/0)   (2/0/0)   (2/0/0)   (0/2/0)   (0/2/0)   (0/2/0)   (0/2/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)   (2/0/0)
+
+
+Key:
+(1) rules.ZeroR '' 48055541465867954
+(2) rules.PART '-M 2 -C 0.25 -Q 1' 8121455039782598361
+(3) bayes.NaiveBayes '' 5995231201785697655
+(4) trees.J48 '-C 0.25 -M 2' -217733168393644444
+(5) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(6) lazy.IBk '-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(7) lazy.IBk '-K 5 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(8) trees.HoeffdingTree '-L 2 -S 1 -E 1.0E-7 -H 0.05 -M 0.01 -G 200.0 -N 0.0' 7117521775722396251
+(9) bayes.BayesNet '-D -Q bayes.net.search.local.K2 -- -P 1 -S BAYES -E bayes.net.estimate.SimpleEstimator -- -A 0.5' 746037443258775954
+(10) bayes.NaiveBayesMultinomialText '-P 0 -M 3.0 -norm 1.0 -lnorm 2.0 -stopwords-handler weka.core.stopwords.Null -tokenizer \"weka.core.tokenizers.WordTokenizer -delimiters \\\" \\\\r\\\\n\\\\t.,;:\\\\\\\'\\\\\\\"()?!\\\"\" -stemmer weka.core.stemmers.NullStemmer' 2139025532014821394
+(11) bayes.NaiveBayesUpdateable '' -5354015843807192221
+(12) functions.Logistic '-R 1.0E-8 -M -1 -num-decimal-places 4' 3932117032546553727
+(13) functions.SimpleLogistic '-I 0 -M 500 -H 50 -W 0.0' 7397710626304705059
+(14) functions.SMO '-C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K \"functions.supportVector.PolyKernel -E 1.0 -C 250007\" -calibrator \"functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4\"' -6585883636378691736
+(15) lazy.KStar '-B 20 -M a' 332458330800479083
+(16) lazy.LWL '-U 0 -K -1 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\" -W trees.DecisionStump' 1979797405383665815
+(17) meta.AdaBoostM1 '-P 100 -S 1 -I 10 -W trees.DecisionStump' -1178107808933117974
+(18) meta.AttributeSelectedClassifier '-E \"CfsSubsetEval -P 1 -E 1\" -S \"BestFirst -D 1 -N 5\" -W trees.J48 -- -C 0.25 -M 2' -1151805453487947577
+(19) meta.Bagging '-P 100 -S 1 -num-slots 1 -I 10 -W trees.REPTree -- -M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0' -115879962237199703
+(20) meta.ClassificationViaRegression '-W trees.M5P -- -M 4.0' 4500023123618669859
+(21) meta.CVParameterSelection '-X 10 -S 1 -W rules.ZeroR' -6529603380876641265
+(22) meta.FilteredClassifier '-F \"supervised.attribute.Discretize -R first-last -precision 6\" -W trees.J48 -- -C 0.25 -M 2' -4523450618538717400
+(23) meta.IterativeClassifierOptimizer '-W meta.LogitBoost -L 50 -P 1 -E 1 -I 1 -F 10 -R 1 -metric RMSE -S 1 -- -P 100 -L -1.7976931348623157E308 -H 1.0 -Z 3.0 -O 1 -E 1 -S 1 -I 10 -W trees.DecisionStump' -3665485256313525864
+(24) meta.LogitBoost '-P 100 -L -1.7976931348623157E308 -H 1.0 -Z 3.0 -O 1 -E 1 -S 1 -I 10 -W trees.DecisionStump' -1105660358715833753
+(25) meta.MultiClassClassifier '-M 0 -R 2.0 -S 1 -W functions.Logistic -- -R 1.0E-8 -M -1 -num-decimal-places 4' -3879602011542849141
+(26) meta.MultiClassClassifierUpdateable '-M 0 -R 2.0 -S 1 -W functions.SGD -- -F 0 -L 0.01 -R 1.0E-4 -E 500 -C 0.001 -S 1' -1619685269774366430
+(27) meta.MultiScheme '-X 0 -S 1 -B \"rules.ZeroR \"' 5710744346128957520
+(28) meta.RandomCommittee '-S 1 -num-slots 1 -I 10 -W trees.RandomTree -- -K 0 -M 1.0 -V 0.001 -S 1' -9204394360557300093
+(29) meta.RandomizableFilteredClassifier '-S 1 -F \"unsupervised.attribute.RandomProjection -N 10 -R 42 -D Sparse1\" -W lazy.IBk -- -K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -4523466618555717333
+(30) meta.RandomSubSpace '-P 0.5 -S 1 -num-slots 1 -I 10 -W trees.REPTree -- -M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0' 1278172513912424947
+(31) meta.Stacking '-X 10 -M \"rules.ZeroR \" -S 1 -num-slots 1 -B \"rules.ZeroR \"' 5134738557155845452
+(32) meta.Vote '-S 1 -B \"rules.ZeroR \" -R AVG' -637891196294399624
+(33) meta.WeightedInstancesHandlerWrapper '-S 1 -W rules.ZeroR' 2980789213434466135
+(34) misc.InputMappedClassifier '-I -trim -W rules.ZeroR' 4901630631723287761
+(35) rules.DecisionTable '-X 1 -S \"BestFirst -D 1 -N 5\"' 2888557078165701326
+(36) rules.JRip '-F 3 -N 2.0 -O 2 -S 1' -6589312996832147161
+(37) rules.OneR '-B 6' -3459427003147861443
+(38) trees.DecisionStump '' 1618384535950391
+(39) trees.LMT '-I -1 -M 15 -W 0.0' -1113212459618104943
+(40) trees.RandomForest '-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1' 1116839470751428698
+(41) trees.RandomTree '-K 0 -M 1.0 -V 0.001 -S 1' -9051119597407396024
+(42) trees.REPTree '-M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0' -9216785998198681299
+(43) functions.MultilayerPerceptron '-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a' -5990607817048210779
+
