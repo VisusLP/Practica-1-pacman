@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE object
+[
+   <!ELEMENT object (#PCDATA|object)*>
+   <!ATTLIST object name      CDATA #REQUIRED>
+   <!ATTLIST object class     CDATA #REQUIRED>
+   <!ATTLIST object primitive CDATA "no">
+   <!ATTLIST object array     CDATA "no">   <!-- the dimensions of the array; no=0, yes=1 -->
+   <!ATTLIST object null      CDATA "no">
+   <!ATTLIST object version   CDATA "3.8.1">
+]
+>
+
+<object class="weka.classifiers.functions.MultilayerPerceptron" name="__root__" version="3.8.1">
+   <object class="boolean" name="debug" primitive="yes">false</object>
+   <object array="yes" class="java.lang.String" name="options">
+      <object class="java.lang.String" name="0">-L</object>
+      <object class="java.lang.String" name="1">0.3</object>
+      <object class="java.lang.String" name="2">-M</object>
+      <object class="java.lang.String" name="3">0.2</object>
+      <object class="java.lang.String" name="4">-N</object>
+      <object class="java.lang.String" name="5">500</object>
+      <object class="java.lang.String" name="6">-V</object>
+      <object class="java.lang.String" name="7">0</object>
+      <object class="java.lang.String" name="8">-S</object>
+      <object class="java.lang.String" name="9">0</object>
+      <object class="java.lang.String" name="10">-E</object>
+      <object class="java.lang.String" name="11">20</object>
+      <object class="java.lang.String" name="12">-H</object>
+      <object class="java.lang.String" name="13">a</object>
+   </object>
+</object>
