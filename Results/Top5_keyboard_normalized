@@ -1,0 +1,24 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 2 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   2
+Resultsets: 5
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       27/03/19 19:47
+
+
+Dataset                   (1) lazy.IBk | (2) trees (3) trees (4) meta. (5) funct
+--------------------------------------------------------------------------------
+test_othermaps_keyboard-w(100)   74.78 |   74.27     76.37     75.33     72.01  
+test_samemaps_keyboard-we(100)   75.23 |   74.25     78.64 v   77.77     71.37 *
+--------------------------------------------------------------------------------
+                               (v/ /*) |   (0/2/0)   (1/1/0)   (0/2/0)   (0/1/1)
+
+
+Key:
+(1) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(2) trees.LMT '-I -1 -M 15 -W 0.0' -1113212459618104943
+(3) trees.RandomForest '-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1' 1116839470751428698
+(4) meta.RandomCommittee '-S 1 -num-slots 1 -I 10 -W trees.RandomTree -- -K 0 -M 1.0 -V 0.001 -S 1' -9204394360557300093
+(5) functions.MultilayerPerceptron '-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a' -5990607817048210779
+
