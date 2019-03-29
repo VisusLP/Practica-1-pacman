@@ -316,7 +316,7 @@ class BasicAgentAA(BustersAgent):
         return table
 
     def printInfo(self, gameState):
-        print ("---------------- TICK ", self.countActions, " --------------------------")
+        print "---------------- TICK ", self.countActions, " --------------------------"
         # Dimensiones del mapa
         width, height = gameState.data.layout.width, gameState.data.layout.height
         print "Width: ", width, " Height: ", height
@@ -446,17 +446,15 @@ class BasicAgentAA(BustersAgent):
         else:
             x.append(gameState.getDistanceNearestFood())
         
-        a = self.weka.predict("./Models/Automatic_samemaps_RandomCommittee.model", x, "./training_tutorial1_noNextScore.arff")
+        a = self.weka.predict("./Models/Automatic_samemaps_J48.model", x, "./training_tutorial1_noNextScore.arff")
 
         return a
 
     def printLineData(self, gameState):
         global prevState
         if(os.path.isfile("test_othermaps_tutorial1.arff") == False):
-            attributesList = [["pacPosX", "NUMERIC"],["pacPosY", "NUMERIC"], ["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], 
-        ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"], ["ghostPosX1","NUMERIC"],["ghostPosY1","NUMERIC"], ["ghostPosX2","NUMERIC"],
-        ["ghostPosY2","NUMERIC"], ["ghostPosX3","NUMERIC"],["ghostPosY3","NUMERIC"], ["ghostPosX4","NUMERIC"],["ghostPosY4","NUMERIC"],
-        ["LivingGhost1","{0,1}"], ["LivingGhost2","{0,1}"], ["LivingGhost3","{0,1}"], ["LivingGhost4","{0,1}"],["Score","NUMERIC"],["NextScore","NUMERIC"],
+            attributesList = [["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], 
+        ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"], ["Score","NUMERIC"],["NextScore","NUMERIC"],
         ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
         
@@ -471,8 +469,6 @@ class BasicAgentAA(BustersAgent):
                     file.write(",")
             file.write("\n")
         file.close()
-        prevState.append(gameState.getPacmanPosition()[0])
-        prevState.append(gameState.getPacmanPosition()[1])
         legalNorth = 0
         legalSouth = 0
         legalEast = 0
@@ -494,19 +490,19 @@ class BasicAgentAA(BustersAgent):
         prevState.append(legalEast)
         prevState.append(legalWest)
         prevState.append(legalStop)
-        for g in gameState.getGhostPositions():
-            prevState.append(g[0])
-            prevState.append(g[1])
-        counter = 0
-        for h in gameState.getLivingGhosts():
-            if counter == 0:
-                counter += 1
-            else:
-                if h:
-                    prevState.append("1")
-                else:
-                    prevState.append("0")
-                counter += 1
+        positionGhosts = gameState.getGhostPositions()
+        iterator = -1
+        closestGhost = 0
+        minDist = 99999
+        for i in gameState.getLivingGhosts():
+            if (i == "true"):
+                 d = self.distancer.getDistance(gameState.getPacmanPosition(), positionGhosts[iterator])
+                 if (d < minDist):
+                     minDist = d
+                     closestGhost = iterator
+            iterator += 1
+        prevState.append(gameState.getPacmanPosition()[0]-positionGhosts[iterator][0])
+        prevState.append(gameState.getPacmanPosition()[1]-positionGhosts[iterator][1])
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
         if (gameState.getDistanceNearestFood() == "None"):
