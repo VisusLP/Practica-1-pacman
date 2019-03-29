@@ -16,6 +16,7 @@ import util
 from game import Agent
 from game import Directions
 from keyboardAgents import KeyboardAgent
+from wekaI import Weka
 import inference
 import busters
 import os
@@ -76,6 +77,8 @@ class BustersAgent:
         self.inferenceModules = [inferenceType(a) for a in ghostAgents]
         self.observeEnable = observeEnable
         self.elapseTimeEnable = elapseTimeEnable
+        self.weka = Weka()
+        self.weka.start_jvm()
 
     def registerInitialState(self, gameState):
         "Initializes beliefs and inference modules"
@@ -313,7 +316,7 @@ class BasicAgentAA(BustersAgent):
         return table
 
     def printInfo(self, gameState):
-        print "---------------- TICK ", self.countActions, " --------------------------"
+        print ("---------------- TICK ", self.countActions, " --------------------------")
         # Dimensiones del mapa
         width, height = gameState.data.layout.width, gameState.data.layout.height
         print "Width: ", width, " Height: ", height
@@ -343,6 +346,7 @@ class BasicAgentAA(BustersAgent):
         print "Score: ", gameState.getScore()
         
     def chooseAction(self, gameState):
+        """
         global last_move
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
@@ -398,6 +402,53 @@ class BasicAgentAA(BustersAgent):
                     iterator = iterator + 1
         last_move = move
         return move
+        """
+        x = []
+        x.append(gameState.getPacmanPosition()[0])
+        x.append(gameState.getPacmanPosition()[1])
+        legalNorth = 0
+        legalSouth = 0
+        legalEast = 0
+        legalWest = 0
+        legalStop = 0
+        for l in gameState.getLegalPacmanActions():
+            if l == "North":
+                legalNorth = 1
+            if l == "South":
+                legalSouth = 1
+            if l == "East":
+                legalEast = 1
+            if l == "West":
+                legalWest = 1
+            if l == "Stop":
+                legalStop = 1
+        x.append(legalNorth)
+        x.append(legalSouth)
+        x.append(legalEast)
+        x.append(legalWest)
+        x.append(legalStop)
+        for g in gameState.getGhostPositions():
+            x.append(g[0])
+            x.append(g[1])
+        counter = 0
+        for h in gameState.getLivingGhosts():
+            if counter == 0:
+                counter += 1
+            else:
+                if h:
+                    x.append("1")
+                else:
+                    x.append("0")
+                counter += 1
+        x.append(gameState.getScore())
+        if (gameState.getDistanceNearestFood() == "None"):
+            x.append("99999")
+        else:
+            x.append(gameState.getDistanceNearestFood())
+        
+        a = self.weka.predict("./Models/Automatic_samemaps_RandomCommittee.model", x, "./training_tutorial1_noNextScore.arff")
+
+        return a
 
     def printLineData(self, gameState):
         global prevState
