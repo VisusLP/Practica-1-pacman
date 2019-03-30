@@ -8,7 +8,8 @@
             "name": "Python: Current File (Integrated Terminal)",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/busters.py",
+            "args": ["-p", "BasicAgentAA","-g","RandomGhost"],
             "console": "integratedTerminal"
         },
         {
