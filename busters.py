@@ -235,6 +235,23 @@ class GameState:
 
         else:
             return None;
+    def getCustomDistanceNearestFood(self, pacmanPosition):
+        """
+        Returns the distance to the nearest food
+        """
+        if(self.getNumFood() > 0):
+            minDistance = 900000
+            for i in range(self.data.layout.width):
+                for j in range(self.data.layout.height):
+                    if self.hasFood(i, j):
+                        foodPosition = i, j
+                        distance = util.manhattanDistance(pacmanPosition, foodPosition)
+                        if distance < minDistance:
+                            minDistance = distance
+            return minDistance
+
+        else:
+            return None;
 
     def getGhostPositions(self):
         return self.ghostPositions
