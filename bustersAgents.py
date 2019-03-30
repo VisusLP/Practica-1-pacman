@@ -132,6 +132,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
     def printLineData(self, gameState):
         global prevState
+        self.distancer = Distancer(gameState.data.layout, False)
         if(os.path.isfile("training_keyboard.arff") == False):
             attributesList = [["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"],
             ["distNearestGhostX","NUMERIC"],["distNearestGhostY","NUMERIC"], ["Score","NUMERIC"],["NextScore","NUMERIC"],
@@ -185,7 +186,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         prevState.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
-        if (gameState.getDistanceNearestFood() == "None"):
+        if (gameState.getDistanceNearestFood() == None):
             prevState.append("99999")
         else:
             prevState.append(gameState.getDistanceNearestFood())
@@ -344,7 +345,7 @@ class BasicAgentAA(BustersAgent):
         print "Score: ", gameState.getScore()
         
     def chooseAction(self, gameState):
-          
+        
         global last_move
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
@@ -454,19 +455,19 @@ class BasicAgentAA(BustersAgent):
         else:
             x.append(gameState.getDistanceNearestFood())
         
-        a = self.weka.predict("./Models/Automatic_samemaps_RandomCommittee.model", x, "./training_tutorial1_noNextScore.arff")
+        a = self.weka.predict("./Models/Automatic_allmaps_PART.model", x, "./training_allmaps_noNextScore.arff")
 
-        return a
-        '''
+        return a'''
+        
     def printLineData(self, gameState):
         global prevState
-        if(os.path.isfile("test_othermaps_tutorial1.arff") == False):
+        if(os.path.isfile("training_allmaps.arff") == False):
             attributesList = [["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"],
             ["distNearestGhostX","NUMERIC"],["distNearestGhostY","NUMERIC"], ["Score","NUMERIC"],["NextScore","NUMERIC"],
         ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
         
-        file = open("test_othermaps_tutorial1.arff", "a")
+        file = open("training_allmaps.arff", "a")
         if self.countActions > 1:
             prevState[8] = gameState.getScore()
             prevState[10] = gameState.data.agentStates[0].getDirection()
@@ -520,8 +521,8 @@ class BasicAgentAA(BustersAgent):
         prevState.append("Stop")
 
     def createWekaFile(self, attributesList):
-        file = open("test_othermaps_tutorial1.arff", "a")
-        file.write("@RELATION 'test_othermaps_tutorial1'\n\n")
+        file = open("training_allmaps.arff", "a")
+        file.write("@RELATION 'training_allmaps'\n\n")
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
         file.write("\n@data\n")

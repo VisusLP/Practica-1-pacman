@@ -686,7 +686,7 @@ class Game:
             else:
                 action = agent.getAction(observation)
             self.unmute()
-
+            
             if agentIndex == 0:
                agent.printLineData(self.state)
 
