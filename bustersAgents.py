@@ -176,15 +176,16 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
         
-        file = open("test_nextScore5.arff", "a")
         if self.countActions > predictN:
+            file = open("test_nextScore5.arff", "a")
             prevStateF[8] = gameState.getScore()
             while(len(prevStateF) > 0):
                 x = prevStateF.pop(0);               
                 file.write("%s" % (x))
                 if len(prevStateF) > 1:
                     file.write(",")
-        file.close()
+            file.close()
+            
         legalNorth = 0
         legalSouth = 0
         legalEast = 0
@@ -546,15 +547,17 @@ class BasicAgentAA(BustersAgent):
         ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
         
-        file = open("test_nextScore5.arff", "a")
+        
         if self.countActions > predictN:
+            file = open("test_nextScore5.arff", "a")
             prevStateF[8] = gameState.getScore()
             while(len(prevStateF) > 0):
                 x = prevStateF.pop(0);               
                 file.write("%s" % (x))
                 if len(prevStateF) > 1:
                     file.write(",")
-        file.close()
+            file.close()
+
         legalNorth = 0
         legalSouth = 0
         legalEast = 0
