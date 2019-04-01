@@ -169,6 +169,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             prevState2 = list(prevState1)
             prevState1 = []
 
+        self.distancer = Distancer(gameState.data.layout, False)
         if(os.path.isfile("test_nextScore5.arff") == False):
             attributesList = [["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"],
             ["distNearestGhostX","NUMERIC"],["distNearestGhostY","NUMERIC"], ["Score","NUMERIC"],["NextScore","NUMERIC"],
@@ -226,6 +227,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             prevState1.append(gameState.getDistanceNearestFood())
         prevState1.append(last_move)
         prevState1.append("\n")
+
 
     def createWekaFile(self, attributesList):
         file = open("training_keyboard.arff", "a")
