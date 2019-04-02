@@ -22,13 +22,8 @@ import busters
 import os
 
 last_move = "Stop"
-prevState1 = []
-prevState2 = []
-prevState3 = []
-prevState4 = []
-prevState5 = []
-prevStateF = []
-predictN = 5
+prevState = []
+predictN = 1
 
 class NullGraphics:
     "Placeholder for graphics"
@@ -82,6 +77,9 @@ class BustersAgent:
         self.inferenceModules = [inferenceType(a) for a in ghostAgents]
         self.observeEnable = observeEnable
         self.elapseTimeEnable = elapseTimeEnable
+        global predictN
+        if predictN <= 0:
+            predictN = 1
         '''
         self.weka = Weka()
         self.weka.start_jvm()
@@ -136,38 +134,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
     def printLineData(self, gameState):
         global predictN
-        global prevState1
-        global prevState2
-        global prevState3
-        global prevState4
-        global prevState5
-        global prevStateF
-        if predictN == 1:
-            prevStateF = list(prevState1)
-            prevState1 = []
-        elif predictN == 2:
-            prevStateF = prevState2
-            prevState2 = prevState1
-            prevState1 = []
-        elif predictN == 3:
-            prevStateF = prevState3
-            prevState3 = prevState2
-            prevState2 = prevState1
-            prevState1 = []
-        elif predictN == 4:
-            prevStateF = prevState4
-            prevState4 = prevState3
-            prevState3 = prevState2
-            prevState2 = prevState1
-            prevState1 = []
-        elif predictN >= 5:
-            predictN = 5
-            prevStateF = list(prevState5)
-            prevState5 = list(prevState4)
-            prevState4 = list(prevState3)
-            prevState3 = list(prevState2)
-            prevState2 = list(prevState1)
-            prevState1 = []
+        global prevState
 
         self.distancer = Distancer(gameState.data.layout, False)
         if(os.path.isfile("test_nextScore5.arff") == False):
@@ -177,13 +144,15 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             self.createWekaFile(attributesList)
         
         if self.countActions > predictN:
-            file = open("test_nextScore5.arff", "a")
-            prevStateF[8] = gameState.getScore()
-            while(len(prevStateF) > 0):
-                x = prevStateF.pop(0);               
+            counter = 12
+            file = open("test_nextScoreN.arff", "a")
+            prevState[8] = gameState.getScore()
+            while(counter > 0):
+                x = prevState.pop(0);               
                 file.write("%s" % (x))
-                if len(prevStateF) > 1:
+                if counter > 2:
                     file.write(",")
+                counter -= 1
             file.close()
             
         legalNorth = 0
@@ -202,11 +171,11 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                 legalWest = 1
             elif (l == "Stop"):
                 legalStop = 1
-        prevState1.append(legalNorth)
-        prevState1.append(legalSouth)
-        prevState1.append(legalEast)
-        prevState1.append(legalWest)
-        prevState1.append(legalStop)
+        prevState.append(legalNorth)
+        prevState.append(legalSouth)
+        prevState.append(legalEast)
+        prevState.append(legalWest)
+        prevState.append(legalStop)
         positionGhosts = gameState.getGhostPositions()
         iterator = -1
         closestGhost = 0
@@ -218,16 +187,16 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                      minDist = d
                      closestGhost = iterator
             iterator += 1
-        prevState1.append(gameState.getPacmanPosition()[0]-positionGhosts[closestGhost][0])
-        prevState1.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
-        prevState1.append(gameState.getScore())
-        prevState1.append(gameState.getScore()-1)
+        prevState.append(gameState.getPacmanPosition()[0]-positionGhosts[closestGhost][0])
+        prevState.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
+        prevState.append(gameState.getScore())
+        prevState.append(gameState.getScore()-1)
         if (gameState.getDistanceNearestFood() == None):
-            prevState1.append("99999")
+            prevState.append("99999")
         else:
-            prevState1.append(gameState.getDistanceNearestFood())
-        prevState1.append(last_move)
-        prevState1.append("\n")
+            prevState.append(gameState.getDistanceNearestFood())
+        prevState.append(last_move)
+        prevState.append("\n")
 
 
     def createWekaFile(self, attributesList):
@@ -493,7 +462,7 @@ class BasicAgentAA(BustersAgent):
         else:
             x.append(gameState.getDistanceNearestFood())
         
-        a = self.weka.predict("./Models/Automatic_newmap_RandomCommittee.model", x, "./training_newmap_noNextScore.arff")
+        a = self.weka.predict("./Models/Tutorial1_samemaps_removeDuplicates_RandomForest.model", x, "./training_tutorial1_noNextScore.arff")
         
         if (a == 'East' and legalEast == 0):
             a = 'Stop'
@@ -506,56 +475,27 @@ class BasicAgentAA(BustersAgent):
         last_move = a
         return a
         '''
+
     def printLineData(self, gameState):
         global predictN
-        global prevState1
-        global prevState2
-        global prevState3
-        global prevState4
-        global prevState5
-        global prevStateF
-        if predictN == 1:
-            prevStateF = list(prevState1)
-            prevState1 = []
-        elif predictN == 2:
-            prevStateF = prevState2
-            prevState2 = prevState1
-            prevState1 = []
-        elif predictN == 3:
-            prevStateF = prevState3
-            prevState3 = prevState2
-            prevState2 = prevState1
-            prevState1 = []
-        elif predictN == 4:
-            prevStateF = prevState4
-            prevState4 = prevState3
-            prevState3 = prevState2
-            prevState2 = prevState1
-            prevState1 = []
-        elif predictN >= 5:
-            predictN = 5
-            prevStateF = list(prevState5)
-            prevState5 = list(prevState4)
-            prevState4 = list(prevState3)
-            prevState3 = list(prevState2)
-            prevState2 = list(prevState1)
-            prevState1 = []
+        global prevState
 
-        if(os.path.isfile("test_nextScore5.arff") == False):
+        if(os.path.isfile("test_nextScoreN.arff") == False):
             attributesList = [["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"],
             ["distNearestGhostX","NUMERIC"],["distNearestGhostY","NUMERIC"], ["Score","NUMERIC"],["NextScore","NUMERIC"],
         ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
-        
-        
+
         if self.countActions > predictN:
-            file = open("test_nextScore5.arff", "a")
-            prevStateF[8] = gameState.getScore()
-            while(len(prevStateF) > 0):
-                x = prevStateF.pop(0);               
+            counter = 12
+            file = open("test_nextScoreN.arff", "a")
+            prevState[8] = gameState.getScore()
+            while(counter > 0):
+                x = prevState.pop(0);               
                 file.write("%s" % (x))
-                if len(prevStateF) > 1:
+                if counter > 2:
                     file.write(",")
+                counter -= 1
             file.close()
 
         legalNorth = 0
@@ -574,11 +514,11 @@ class BasicAgentAA(BustersAgent):
                 legalWest = 1
             elif (l == "Stop"):
                 legalStop = 1
-        prevState1.append(legalNorth)
-        prevState1.append(legalSouth)
-        prevState1.append(legalEast)
-        prevState1.append(legalWest)
-        prevState1.append(legalStop)
+        prevState.append(legalNorth)
+        prevState.append(legalSouth)
+        prevState.append(legalEast)
+        prevState.append(legalWest)
+        prevState.append(legalStop)
         positionGhosts = gameState.getGhostPositions()
         iterator = -1
         closestGhost = 0
@@ -590,20 +530,20 @@ class BasicAgentAA(BustersAgent):
                      minDist = d
                      closestGhost = iterator
             iterator += 1
-        prevState1.append(gameState.getPacmanPosition()[0]-positionGhosts[closestGhost][0])
-        prevState1.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
-        prevState1.append(gameState.getScore())
-        prevState1.append(gameState.getScore()-1)
+        prevState.append(gameState.getPacmanPosition()[0]-positionGhosts[closestGhost][0])
+        prevState.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
+        prevState.append(gameState.getScore())
+        prevState.append(gameState.getScore()-1)
         if (gameState.getDistanceNearestFood() == None):
-            prevState1.append("99999")
+            prevState.append("99999")
         else:
-            prevState1.append(gameState.getDistanceNearestFood())
-        prevState1.append(last_move)
-        prevState1.append("\n")
+            prevState.append(gameState.getDistanceNearestFood())
+        prevState.append(last_move)
+        prevState.append("\n")
 
     def createWekaFile(self, attributesList):
-        file = open("test_nextScore5.arff", "a")
-        file.write("@RELATION 'test_nextScore5'\n\n")
+        file = open("test_nextScoreN.arff", "a")
+        file.write("@RELATION 'test_nextScoreN'\n\n")
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
         file.write("\n@data\n")

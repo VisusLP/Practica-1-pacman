@@ -23,6 +23,8 @@ from util import *
 import time, os
 import traceback
 import sys
+from wekaI import Weka
+
 
 #######################
 # Parts worth reading #
@@ -689,7 +691,7 @@ class Game:
             
             if agentIndex == 0:
                agent.printLineData(self.state)
-
+            
             # Execute the action
             self.moveHistory.append( (agentIndex, action) )
             if self.catchExceptions:
@@ -731,3 +733,5 @@ class Game:
                     self.unmute()
                     return
         self.display.finish()
+        self.weka = Weka()
+        self.weka.stop_jvm()
