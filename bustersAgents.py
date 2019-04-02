@@ -24,6 +24,10 @@ import os
 last_move = "Stop"
 prevState = []
 predictN = 1
+distWest = 0
+distEast = 0
+distNorth = 0
+distSouth = 0
 
 class NullGraphics:
     "Placeholder for graphics"
@@ -80,10 +84,10 @@ class BustersAgent:
         global predictN
         if predictN <= 0:
             predictN = 1
-        '''
+        
         self.weka = Weka()
         self.weka.start_jvm()
-        '''
+        
     def registerInitialState(self, gameState):
         "Initializes beliefs and inference modules"
         import __main__
@@ -136,17 +140,15 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         global predictN
         global prevState
 
-        self.distancer = Distancer(gameState.data.layout, False)
-        if(os.path.isfile("test_nextScore5.arff") == False):
-            attributesList = [["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"],
-            ["distNearestGhostX","NUMERIC"],["distNearestGhostY","NUMERIC"], ["Score","NUMERIC"],["NextScore","NUMERIC"],
-        ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
+        if(os.path.isfile("test_samemaps_tutorial1.arff") == False):
+            attributesList = [["distNorth","NUMERIC"],["distSouth","NUMERIC"],["distEast","NUMERIC"],["distWest","NUMERIC"], 
+            ["Score","NUMERIC"],["NextScore","NUMERIC"],["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
-        
+
         if self.countActions > predictN:
-            counter = 12
-            file = open("test_nextScoreN.arff", "a")
-            prevState[8] = gameState.getScore()
+            counter = 9
+            file = open("test_samemaps_tutorial1.arff", "a")
+            prevState[5] = gameState.getScore()
             while(counter > 0):
                 x = prevState.pop(0);               
                 file.write("%s" % (x))
@@ -154,45 +156,15 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                     file.write(",")
                 counter -= 1
             file.close()
-            
-        legalNorth = 0
-        legalSouth = 0
-        legalEast = 0
-        legalWest = 0
-        legalStop = 0
-        for l in gameState.getLegalPacmanActions():
-            if (l == "North"):
-                legalNorth = 1
-            elif (l == "South"):
-                legalSouth = 1
-            elif (l == "East"):
-                legalEast = 1
-            elif (l == "West"):
-                legalWest = 1
-            elif (l == "Stop"):
-                legalStop = 1
-        prevState.append(legalNorth)
-        prevState.append(legalSouth)
-        prevState.append(legalEast)
-        prevState.append(legalWest)
-        prevState.append(legalStop)
-        positionGhosts = gameState.getGhostPositions()
-        iterator = -1
-        closestGhost = 0
-        minDist = 99999
-        for i in gameState.getLivingGhosts():
-            if (i == True):
-                 d = self.distancer.getDistance(gameState.getPacmanPosition(), positionGhosts[iterator])
-                 if (d < minDist):
-                     minDist = d
-                     closestGhost = iterator
-            iterator += 1
-        prevState.append(gameState.getPacmanPosition()[0]-positionGhosts[closestGhost][0])
-        prevState.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
+
+        prevState.append(distNorth)
+        prevState.append(distSouth)
+        prevState.append(distEast)
+        prevState.append(distWest)
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
         if (gameState.getDistanceNearestFood() == None):
-            prevState.append("99999")
+            prevState.append(99999)
         else:
             prevState.append(gameState.getDistanceNearestFood())
         prevState.append(last_move)
@@ -354,42 +326,23 @@ class BasicAgentAA(BustersAgent):
     def chooseAction(self, gameState):
         
         global last_move
+        global distWest
+        global distEast
+        global distNorth
+        global distSouth
+        '''
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
         move = Directions.STOP
+        distWest = 99999
+        distEast = 99999
+        distNorth = 99999
+        distSouth = 99999
         legal = gameState.getLegalActions(0) ##Legal position from the pacman
         posPacman = gameState.getPacmanPosition()
-        minDist = 10000
+        minDist = 99999
         walls = gameState.getWalls()
         livingGhosts = gameState.getLivingGhosts()
-        #move WEST
-        if Directions.WEST in legal:
-            iterator = 1
-            buffPacman = posPacman[0] - 1, posPacman[1]
-            if walls[buffPacman[0]][buffPacman[1]] == False:
-                for x in gameState.getGhostPositions():
-                    if livingGhosts[iterator] == True:
-                        if self.distancer.getDistance(x, buffPacman) < minDist:
-                            minDist = self.distancer.getDistance(x, buffPacman)
-                            move = Directions.WEST
-                        elif self.distancer.getDistance(x, buffPacman) == minDist:
-                            if gameState.getCustomDistanceNearestFood(buffPacman) < gameState.getDistanceNearestFood():
-                                move = Directions.WEST
-                    iterator = iterator + 1
-        #move EAST
-        if Directions.EAST in legal:
-            iterator = 1
-            buffPacman = posPacman[0] + 1, posPacman[1]
-            if walls[buffPacman[0]][buffPacman[1]] == False:
-                for x in gameState.getGhostPositions():
-                    if livingGhosts[iterator] == True:
-                        if self.distancer.getDistance(x, buffPacman) < minDist:
-                            minDist = self.distancer.getDistance(x, buffPacman)
-                            move = Directions.EAST
-                        elif self.distancer.getDistance(x, buffPacman) == minDist:
-                            if gameState.getCustomDistanceNearestFood(buffPacman) < gameState.getDistanceNearestFood():
-                                move = Directions.EAST
-                    iterator = iterator + 1
         #move NORTH
         if Directions.NORTH in legal:
             iterator = 1
@@ -397,12 +350,14 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 for x in gameState.getGhostPositions():
                     if livingGhosts[iterator] == True:
-                        if self.distancer.getDistance(x, buffPacman) < minDist:
-                            minDist = self.distancer.getDistance(x, buffPacman)
-                            move = Directions.NORTH
-                        elif self.distancer.getDistance(x, buffPacman) == minDist:
-                            if gameState.getCustomDistanceNearestFood(buffPacman) < gameState.getDistanceNearestFood():
+                        if self.distancer.getDistance(x, buffPacman) <= distNorth:
+                            distNorth = self.distancer.getDistance(x, buffPacman)
+                            if distNorth < minDist:
+                                minDist = distNorth
                                 move = Directions.NORTH
+                            elif distNorth == minDist:
+                                if gameState.hasFood(buffPacman[0],buffPacman[1]):
+                                    move = Directions.NORTH
                     iterator = iterator + 1
         #move SOUTH
         if Directions.SOUTH in legal:
@@ -411,85 +366,137 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 for x in gameState.getGhostPositions():
                     if livingGhosts[iterator] == True:
-                        if self.distancer.getDistance(x, buffPacman) < minDist:
-                            minDist = self.distancer.getDistance(x, buffPacman)
-                            move = Directions.SOUTH
-                        elif self.distancer.getDistance(x, buffPacman) == minDist:
-                            if gameState.getCustomDistanceNearestFood(buffPacman) < gameState.getDistanceNearestFood():
+                         if self.distancer.getDistance(x, buffPacman) <= distSouth:
+                            distSouth = self.distancer.getDistance(x, buffPacman)
+                            if distSouth < minDist:
+                                minDist = distSouth
                                 move = Directions.SOUTH
+                            elif distSouth == minDist:
+                                if gameState.hasFood(buffPacman[0],buffPacman[1]):
+                                    move = Directions.SOUTH
+                    iterator = iterator + 1
+        #move EAST
+        if Directions.EAST in legal:
+            iterator = 1
+            buffPacman = posPacman[0] + 1, posPacman[1]
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for x in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(x, buffPacman) <= distEast:
+                            distEast = self.distancer.getDistance(x, buffPacman)
+                            if distEast < minDist:
+                                minDist = distEast
+                                move = Directions.EAST
+                            elif distEast == minDist:
+                                if gameState.hasFood(buffPacman[0],buffPacman[1]):
+                                    move = Directions.EAST
+                    iterator = iterator + 1
+        #move WEST
+        if Directions.WEST in legal:
+            iterator = 1
+            buffPacman = posPacman[0] - 1, posPacman[1]
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for x in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(x, buffPacman) <= distWest:
+                            distWest = self.distancer.getDistance(x, buffPacman)
+                            if distWest < minDist:
+                                minDist = distWest
+                                move = Directions.WEST
+                            elif distWest == minDist:
+                                if gameState.hasFood(buffPacman[0],buffPacman[1]):
+                                    move = Directions.WEST
                     iterator = iterator + 1
         last_move = move
         return move
         '''
         x = []
-        legalNorth = 0
-        legalSouth = 0
-        legalEast = 0
-        legalWest = 0
-        legalStop = 0
-        for l in gameState.getLegalPacmanActions():
-            if l == "North":
-                legalNorth = 1
-            if l == "South":
-                legalSouth = 1
-            if l == "East":
-                legalEast = 1
-            if l == "West":
-                legalWest = 1
-            if l == "Stop":
-                legalStop = 1
-        x.append(legalNorth)
-        x.append(legalSouth)
-        x.append(legalEast)
-        x.append(legalWest)
-        x.append(legalStop)
-        positionGhosts = gameState.getGhostPositions()
-        iterator = -1
-        closestGhost = 0
-        minDist = 99999
-        for i in gameState.getLivingGhosts():
-            if (i == True):
-                 d = self.distancer.getDistance(gameState.getPacmanPosition(), positionGhosts[iterator])
-                 if (d < minDist):
-                     minDist = d
-                     closestGhost = iterator
-            iterator += 1
-        x.append(gameState.getPacmanPosition()[0]-positionGhosts[closestGhost][0])
-        x.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
+        distWest = 99999
+        distEast = 99999
+        distNorth = 99999
+        distSouth = 99999
+        
+        legal = gameState.getLegalActions(0) ##Legal position from the pacman
+        posPacman = gameState.getPacmanPosition()
+        walls = gameState.getWalls()
+        livingGhosts = gameState.getLivingGhosts()
+        
+        #move NORTH
+        if Directions.NORTH in legal:
+            iterator = 1
+            buffPacman = posPacman[0], posPacman[1] + 1
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distNorth:
+                            distNorth = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+
+        #move SOUTH
+        if Directions.SOUTH in legal:
+            iterator = 1
+            buffPacman = posPacman[0], posPacman[1] - 1
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distSouth:
+                            distSouth = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+                        
+        #move EAST
+        if Directions.EAST in legal:
+            iterator = 1
+            buffPacman = posPacman[0] + 1, posPacman[1]
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distEast:
+                            distEast = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+                       
+        #move WEST
+        if Directions.WEST in legal:
+            iterator = 1
+            buffPacman = posPacman[0] - 1, posPacman[1]
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distWest:
+                            distWest = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+
+
+        x.append(distNorth)
+        x.append(distSouth)
+        x.append(distEast)
+        x.append(distWest)
         x.append(gameState.getScore())
         if (gameState.getDistanceNearestFood() == None):
-            x.append("99999")
+            x.append(99999)
         else:
             x.append(gameState.getDistanceNearestFood())
         
-        a = self.weka.predict("./Models/Tutorial1_samemaps_removeDuplicates_RandomForest.model", x, "./training_tutorial1_noNextScore.arff")
+        a = self.weka.predict("./Models/hello.model", x, "./training_new_attributes_noNextScore.arff")
         
-        if (a == 'East' and legalEast == 0):
-            a = 'Stop'
-        elif (a == 'West' and legalWest == 0):
-            a = 'Stop'
-        elif (a == 'North' and legalNorth == 0):
-            a = 'Stop'
-        elif (a == 'South' and legalSouth == 0):
-            a = 'Stop'
+        if (distEast == 99999 and distNorth > distSouth and a == 'North'):
+            a = 'South'
         last_move = a
         return a
-        '''
+        
 
     def printLineData(self, gameState):
         global predictN
         global prevState
 
-        if(os.path.isfile("test_nextScoreN.arff") == False):
-            attributesList = [["pacMovesN","{0,1}"], ["pacMovesS","{0,1}"], ["pacMovesE","{0,1}"], ["pacMovesW","{0,1}"], ["pacMovesSTOP","{0,1}"],
-            ["distNearestGhostX","NUMERIC"],["distNearestGhostY","NUMERIC"], ["Score","NUMERIC"],["NextScore","NUMERIC"],
-        ["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
+        if(os.path.isfile("test_samemaps_tutorial1.arff") == False):
+            attributesList = [["distNorth","NUMERIC"],["distSouth","NUMERIC"],["distEast","NUMERIC"],["distWest","NUMERIC"], 
+            ["Score","NUMERIC"],["NextScore","NUMERIC"],["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
 
         if self.countActions > predictN:
-            counter = 12
-            file = open("test_nextScoreN.arff", "a")
-            prevState[8] = gameState.getScore()
+            counter = 9
+            file = open("test_samemaps_tutorial1.arff", "a")
+            prevState[5] = gameState.getScore()
             while(counter > 0):
                 x = prevState.pop(0);               
                 file.write("%s" % (x))
@@ -498,52 +505,22 @@ class BasicAgentAA(BustersAgent):
                 counter -= 1
             file.close()
 
-        legalNorth = 0
-        legalSouth = 0
-        legalEast = 0
-        legalWest = 0
-        legalStop = 0
-        for l in gameState.getLegalPacmanActions():
-            if (l == "North"):
-                legalNorth = 1
-            elif (l == "South"):
-                legalSouth = 1
-            elif (l == "East"):
-                legalEast = 1
-            elif (l == "West"):
-                legalWest = 1
-            elif (l == "Stop"):
-                legalStop = 1
-        prevState.append(legalNorth)
-        prevState.append(legalSouth)
-        prevState.append(legalEast)
-        prevState.append(legalWest)
-        prevState.append(legalStop)
-        positionGhosts = gameState.getGhostPositions()
-        iterator = -1
-        closestGhost = 0
-        minDist = 99999
-        for i in gameState.getLivingGhosts():
-            if (i == True):
-                 d = self.distancer.getDistance(gameState.getPacmanPosition(), positionGhosts[iterator])
-                 if (d < minDist):
-                     minDist = d
-                     closestGhost = iterator
-            iterator += 1
-        prevState.append(gameState.getPacmanPosition()[0]-positionGhosts[closestGhost][0])
-        prevState.append(gameState.getPacmanPosition()[1]-positionGhosts[closestGhost][1])
+        prevState.append(distNorth)
+        prevState.append(distSouth)
+        prevState.append(distEast)
+        prevState.append(distWest)
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
         if (gameState.getDistanceNearestFood() == None):
-            prevState.append("99999")
+            prevState.append(99999)
         else:
             prevState.append(gameState.getDistanceNearestFood())
         prevState.append(last_move)
         prevState.append("\n")
 
     def createWekaFile(self, attributesList):
-        file = open("test_nextScoreN.arff", "a")
-        file.write("@RELATION 'test_nextScoreN'\n\n")
+        file = open("test_samemaps_tutorial1.arff", "a")
+        file.write("@RELATION 'test_samemaps_tutorial1'\n\n")
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
         file.write("\n@data\n")
