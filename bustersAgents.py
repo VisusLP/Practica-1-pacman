@@ -23,7 +23,7 @@ import os
 
 last_move = "Stop"
 prevState = []
-predictN = 1
+predictN = 10
 distWest = 0
 distEast = 0
 distNorth = 0
@@ -330,7 +330,7 @@ class BasicAgentAA(BustersAgent):
         global distEast
         global distNorth
         global distSouth
-        '''
+        
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
         move = Directions.STOP
@@ -482,20 +482,20 @@ class BasicAgentAA(BustersAgent):
             a = 'South'
         last_move = a
         return a
-        
+        '''
 
     def printLineData(self, gameState):
         global predictN
         global prevState
 
-        if(os.path.isfile("test_samemaps_tutorial1.arff") == False):
+        if(os.path.isfile("training_tutorial1_score10.arff") == False):
             attributesList = [["distNorth","NUMERIC"],["distSouth","NUMERIC"],["distEast","NUMERIC"],["distWest","NUMERIC"], 
             ["Score","NUMERIC"],["NextScore","NUMERIC"],["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
 
         if self.countActions > predictN:
             counter = 9
-            file = open("test_samemaps_tutorial1.arff", "a")
+            file = open("training_tutorial1_score10.arff", "a")
             prevState[5] = gameState.getScore()
             while(counter > 0):
                 x = prevState.pop(0);               
@@ -519,8 +519,8 @@ class BasicAgentAA(BustersAgent):
         prevState.append("\n")
 
     def createWekaFile(self, attributesList):
-        file = open("test_samemaps_tutorial1.arff", "a")
-        file.write("@RELATION 'test_samemaps_tutorial1'\n\n")
+        file = open("training_tutorial1_score10.arff", "a")
+        file.write("@RELATION 'training_tutorial1_score10'\n\n")
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
         file.write("\n@data\n")
