@@ -534,13 +534,13 @@ class BasicAgentAA(BustersAgent):
         x.append(distEast)
         x.append(distWest)
         # COMMENT THIS PART IF USING NoFood_NoScore
-        """ x.append(gameState.getScore())
+        x.append(gameState.getScore())
         if (gameState.getDistanceNearestFood() == None):
             x.append(99999)
         else:
-            x.append(gameState.getDistanceNearestFood()) """
+            x.append(gameState.getDistanceNearestFood())
         # -----------------------------------------
-        a = self.weka.predict("./Models/Tutorial1/Othermaps/NoFood_NoScore + RemoveDuplicates/Tutorial1_othermaps_noFood_noScore+removeDuplicates_LMT.model", x, "./training_tutorial1_noFood_noScore_removeDuplicates.arff")
+        a = self.weka.predict("./Models/Tutorial1/Othermaps/Unfiltered/SimpleLogistic.model", x, "./training_tutorial1_noNextScore.arff")
         
         if (distEast == 99999 and distNorth > distSouth and a == 'North'):
             a = 'South'
