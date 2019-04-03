@@ -23,7 +23,7 @@ import os
 
 last_move = "Stop"
 prevState = []
-predictN = 10
+predictN = 1
 distWest = 0
 distEast = 0
 distNorth = 0
@@ -132,22 +132,84 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
     def chooseAction(self, gameState):
         global last_move
+        global distWest
+        global distEast
+        global distNorth
+        global distSouth
+
+        distWest = 99999
+        distEast = 99999
+        distNorth = 99999
+        distSouth = 99999
+
+        self.distancer = Distancer(gameState.data.layout, False)
         self.countActions = self.countActions + 1
         last_move = KeyboardAgent.getAction(self, gameState)
+
+        legal = gameState.getLegalActions(0) ##Legal position from the pacman
+        posPacman = gameState.getPacmanPosition()
+        walls = gameState.getWalls()
+        livingGhosts = gameState.getLivingGhosts()
+        
+        #move NORTH
+        if Directions.NORTH in legal:
+            iterator = 1
+            buffPacman = posPacman[0], posPacman[1] + 1
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distNorth:
+                            distNorth = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+
+        #move SOUTH
+        if Directions.SOUTH in legal:
+            iterator = 1
+            buffPacman = posPacman[0], posPacman[1] - 1
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distSouth:
+                            distSouth = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+                        
+        #move EAST
+        if Directions.EAST in legal:
+            iterator = 1
+            buffPacman = posPacman[0] + 1, posPacman[1]
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distEast:
+                            distEast = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+                       
+        #move WEST
+        if Directions.WEST in legal:
+            iterator = 1
+            buffPacman = posPacman[0] - 1, posPacman[1]
+            if walls[buffPacman[0]][buffPacman[1]] == False:
+                for g in gameState.getGhostPositions():
+                    if livingGhosts[iterator] == True:
+                        if self.distancer.getDistance(g, buffPacman) < distWest:
+                            distWest = self.distancer.getDistance(g, buffPacman)
+                    iterator += 1
+
         return last_move
 
     def printLineData(self, gameState):
         global predictN
         global prevState
 
-        if(os.path.isfile("test_samemaps_tutorial1.arff") == False):
+        if(os.path.isfile("test_othermaps_keyboard.arff") == False):
             attributesList = [["distNorth","NUMERIC"],["distSouth","NUMERIC"],["distEast","NUMERIC"],["distWest","NUMERIC"], 
             ["Score","NUMERIC"],["NextScore","NUMERIC"],["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
 
+        self.distancer = Distancer(gameState.data.layout, False)
         if self.countActions > predictN:
             counter = 9
-            file = open("test_samemaps_tutorial1.arff", "a")
+            file = open("test_othermaps_keyboard.arff", "a")
             prevState[5] = gameState.getScore()
             while(counter > 0):
                 x = prevState.pop(0);               
@@ -172,8 +234,8 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
 
     def createWekaFile(self, attributesList):
-        file = open("training_keyboard.arff", "a")
-        file.write("@RELATION 'training_keyboard'\n\n")
+        file = open("test_othermaps_keyboard.arff", "a")
+        file.write("@RELATION 'test_othermaps_keyboard'\n\n")
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
         file.write("\n@data\n")
