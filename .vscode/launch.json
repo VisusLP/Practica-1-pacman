@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/busters.py",
-            "args": ["-p", "BasicAgentAA","-l","bigHunt"],
+            "args": ["-p", "BasicAgentAA","-l","testClassic","-n","2"],
             "console": "integratedTerminal"
         },
         {

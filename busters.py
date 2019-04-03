@@ -235,23 +235,6 @@ class GameState:
 
         else:
             return None;
-    def getCustomDistanceNearestFood(self, pacmanPosition):
-        """
-        Returns the distance to the nearest food
-        """
-        if(self.getNumFood() > 0):
-            minDistance = 900000
-            for i in range(self.data.layout.width):
-                for j in range(self.data.layout.height):
-                    if self.hasFood(i, j):
-                        foodPosition = i, j
-                        distance = util.manhattanDistance(pacmanPosition, foodPosition)
-                        if distance < minDistance:
-                            minDistance = distance
-            return minDistance
-
-        else:
-            return None;
 
     def getGhostPositions(self):
         return self.ghostPositions
@@ -264,6 +247,9 @@ class GameState:
 
     def isLose( self ):
         return self.maxMoves > 0 and self.numMoves >= self.maxMoves
+
+    def getNumMoves(self):
+        return self.numMoves
 
     def isWin( self ):
         return self.livingGhosts.count(True) == 0
@@ -614,10 +600,13 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         scores = [game.state.getScore() for game in games]
         wins = [game.state.isWin() for game in games]
         winRate = wins.count(True)/ float(len(wins))
+        avgMoves = [game.state.getNumMoves() for game in games]
         print 'Average Score:', sum(scores) / float(len(scores))
         print 'Scores:       ', ', '.join([str(score) for score in scores])
         print 'Win Rate:      %d/%d (%.2f)' % (wins.count(True), len(wins), winRate)
         print 'Record:       ', ', '.join([ ['Loss', 'Win'][int(w)] for w in wins])
+        print 'Average Moves:', sum(avgMoves)/float(len(avgMoves))
+        print 'Moves:        ', ', '.join([str(avgMoves) for avgMoves in avgMoves])
 
     return games
 

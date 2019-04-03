@@ -689,8 +689,8 @@ class Game:
                 action = agent.getAction(observation)
             self.unmute()
             
-            if agentIndex == 0:
-               agent.printLineData(self.state)
+            """ if agentIndex == 0:
+               agent.printLineData(self.state) """
             
             # Execute the action
             self.moveHistory.append( (agentIndex, action) )
@@ -733,5 +733,5 @@ class Game:
                     self.unmute()
                     return
         self.display.finish()
-        self.weka = Weka()
-        self.weka.stop_jvm()
+        """ self.weka = Weka()
+        self.weka.stop_jvm() """
