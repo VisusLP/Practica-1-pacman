@@ -28,6 +28,9 @@ from game import Configuration
 from util import nearestPoint
 from util import manhattanDistance
 import sys, util, types, time, random, layout, os
+from wekaI import Weka
+
+layoutName = ''
 
 ########################################
 # Parameters for noisy sensor readings #
@@ -235,23 +238,6 @@ class GameState:
 
         else:
             return None;
-    def getCustomDistanceNearestFood(self, pacmanPosition):
-        """
-        Returns the distance to the nearest food
-        """
-        if(self.getNumFood() > 0):
-            minDistance = 900000
-            for i in range(self.data.layout.width):
-                for j in range(self.data.layout.height):
-                    if self.hasFood(i, j):
-                        foodPosition = i, j
-                        distance = util.manhattanDistance(pacmanPosition, foodPosition)
-                        if distance < minDistance:
-                            minDistance = distance
-            return minDistance
-
-        else:
-            return None;
 
     def getGhostPositions(self):
         return self.ghostPositions
@@ -264,6 +250,9 @@ class GameState:
 
     def isLose( self ):
         return self.maxMoves > 0 and self.numMoves >= self.maxMoves
+
+    def getNumMoves(self):
+        return self.numMoves
 
     def isWin( self ):
         return self.livingGhosts.count(True) == 0
@@ -509,6 +498,7 @@ def readCommand( argv ):
     """
     Processes the command used to run pacman from the command line.
     """
+    global layoutName
     from optparse import OptionParser
     usageStr = """
     USAGE:      python busters.py <options>
@@ -550,6 +540,9 @@ def readCommand( argv ):
 
     # Fix the random seed
     if options.fixRandomSeed: random.seed('bustersPacman')
+
+    # Store layout name for later use
+    layoutName = options.layout
 
     # Choose a layout
     args['layout'] = layout.getLayout( options.layout )
@@ -611,13 +604,37 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         games.append(game)
 
     if numGames > 1:
+        file2 = open("Results/Game history.txt", "a")
         scores = [game.state.getScore() for game in games]
         wins = [game.state.isWin() for game in games]
         winRate = wins.count(True)/ float(len(wins))
-        print 'Average Score:', sum(scores) / float(len(scores))
-        print 'Scores:       ', ', '.join([str(score) for score in scores])
-        print 'Win Rate:      %d/%d (%.2f)' % (wins.count(True), len(wins), winRate)
-        print 'Record:       ', ', '.join([ ['Loss', 'Win'][int(w)] for w in wins])
+        avgMoves = [game.state.getNumMoves() for game in games]
+        movesBuff = avgMoves
+        print '\nPLAYING IN MAP:    ', layoutName
+        print 'Average Score:     ', sum(scores) / float(len(scores))
+        print 'Scores:            ', ', '.join([str(score) for score in scores])
+        print 'Win Rate:          %d/%d (%.2f)' % (wins.count(True), len(wins), winRate)
+        print 'Record:            ', ', '.join([ ['Loss', 'Win'][int(w)] for w in wins])
+        print 'Average Moves:     ', sum(avgMoves)/float(len(avgMoves))
+        print 'Moves:             ', ', '.join([str(avgMoves) for avgMoves in avgMoves])
+
+
+        file2.write("PLAYING IN MAP:     %s\n" % layoutName)
+        averageScore = sum(scores) / float(len(scores))
+        file2.write("Average Score:      %d\n" % averageScore)
+        file2.write("Scores:             %s\n" % ', '.join([str(score) for score in scores]))
+        file2.write("Record:             ")
+        file2.write(', '.join([ ['Loss', 'Win'][int(w)] for w in wins]))
+        file2.write("\n")
+        averageMoves = sum(movesBuff) / float(len(movesBuff))
+        file2.write("Average Moves:      %d\n" % averageMoves)
+        file2.write("Moves:              ")
+        file2.write(', '.join([str(movesBuff) for movesBuff in movesBuff]))
+        file2.write("\n\n\n")
+        file2.close()
+
+    weka = Weka()
+    weka.stop_jvm()
 
     return games
 
