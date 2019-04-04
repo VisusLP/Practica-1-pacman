@@ -604,7 +604,7 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         games.append(game)
 
     if numGames > 1:
-        file2 = open("Results/Game history.txt", "a")
+        result = open("Results/Game history.txt", "a")
         scores = [game.state.getScore() for game in games]
         wins = [game.state.isWin() for game in games]
         winRate = wins.count(True)/ float(len(wins))
@@ -619,19 +619,19 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         print 'Moves:             ', ', '.join([str(avgMoves) for avgMoves in avgMoves])
 
 
-        file2.write("PLAYING IN MAP:     %s\n" % layoutName)
+        result.write("PLAYING IN MAP:     %s\n" % layoutName)
         averageScore = sum(scores) / float(len(scores))
-        file2.write("Average Score:      %d\n" % averageScore)
-        file2.write("Scores:             %s\n" % ', '.join([str(score) for score in scores]))
-        file2.write("Record:             ")
-        file2.write(', '.join([ ['Loss', 'Win'][int(w)] for w in wins]))
-        file2.write("\n")
+        result.write("Average Score:      %d\n" % averageScore)
+        result.write("Scores:             %s\n" % ', '.join([str(score) for score in scores]))
+        result.write("Record:             ")
+        result.write(', '.join([ ['Loss', 'Win'][int(w)] for w in wins]))
+        result.write("\n")
         averageMoves = sum(movesBuff) / float(len(movesBuff))
-        file2.write("Average Moves:      %d\n" % averageMoves)
-        file2.write("Moves:              ")
-        file2.write(', '.join([str(movesBuff) for movesBuff in movesBuff]))
-        file2.write("\n\n\n")
-        file2.close()
+        result.write("Average Moves:      %d\n" % averageMoves)
+        result.write("Moves:              ")
+        result.write(', '.join([str(movesBuff) for movesBuff in movesBuff]))
+        result.write("\n\n\n")
+        result.close()
 
     weka = Weka()
     weka.stop_jvm()

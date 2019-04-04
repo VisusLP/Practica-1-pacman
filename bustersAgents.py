@@ -23,7 +23,7 @@ import os
 
 last_move = "Stop"
 prevState = []
-predictN = 5
+predictN = 1
 distWest = 0
 distEast = 0
 distNorth = 0
@@ -534,13 +534,13 @@ class BasicAgentAA(BustersAgent):
         x.append(distEast)
         x.append(distWest)
         # COMMENT THIS PART IF USING NoFood_NoScore
-        x.append(gameState.getScore())
+        """ x.append(gameState.getScore())
         if (gameState.getDistanceNearestFood() == None):
             x.append(99999)
         else:
-            x.append(gameState.getDistanceNearestFood())
+            x.append(gameState.getDistanceNearestFood()) """
         # -----------------------------------------
-        a = self.weka.predict("./Models/Tutorial1/Othermaps/Unfiltered/SimpleLogistic.model", x, "./training_tutorial1_noNextScore.arff")
+        a = self.weka.predict("./Models/Tutorial1/Othermaps/NoFood_NoScore + RemoveDuplicates/SimpleLogistic.model", x, "./training_tutorial1_noFood_noScore.arff")
         
         if (distEast == 99999 and distNorth > distSouth and a == 'North'):
             a = 'South'

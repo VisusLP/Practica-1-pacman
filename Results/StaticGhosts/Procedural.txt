@@ -1,0 +1,128 @@
+PLAYING IN MAP:     newmap
+Average Score:      751
+Scores:             751, 751
+Record:             Win, Win
+Average Moves:      48
+Moves:              48, 48
+
+
+PLAYING IN MAP:     oneHunt
+Average Score:      775
+Scores:             775, 775
+Record:             Win, Win
+Average Moves:      24
+Moves:              24, 24
+
+
+PLAYING IN MAP:     openClassic
+Average Score:      3657
+Scores:             3657, 3657
+Record:             Win, Win
+Average Moves:      42
+Moves:              42, 42
+
+
+PLAYING IN MAP:     openHunt
+Average Score:      769
+Scores:             769, 769
+Record:             Win, Win
+Average Moves:      30
+Moves:              30, 30
+
+
+PLAYING IN MAP:     originalClassic
+Average Score:      2459
+Scores:             2459, 2459
+Record:             Win, Win
+Average Moves:      40
+Moves:              40, 40
+
+
+PLAYING IN MAP:     20Hunt
+Average Score:      773
+Scores:             773, 773
+Record:             Win, Win
+Average Moves:      26
+Moves:              26, 26
+
+
+PLAYING IN MAP:     bigHunt
+Average Score:      723
+Scores:             723, 723
+Record:             Win, Win
+Average Moves:      76
+Moves:              76, 76
+
+
+PLAYING IN MAP:     capsuleClassic
+Average Score:      2469
+Scores:             2469, 2469
+Record:             Win, Win
+Average Moves:      30
+Moves:              30, 30
+
+
+PLAYING IN MAP:     classic
+Average Score:      759
+Scores:             759, 759
+Record:             Win, Win
+Average Moves:      40
+Moves:              40, 40
+
+
+PLAYING IN MAP:     contestClassic
+Average Score:      2174
+Scores:             2174, 2174
+Record:             Win, Win
+Average Moves:      25
+Moves:              25, 25
+
+
+PLAYING IN MAP:     mimapa
+Average Score:      792
+Scores:             792, 792
+Record:             Win, Win
+Average Moves:      7
+Moves:              7, 7
+
+
+PLAYING IN MAP:     sixHunt
+Average Score:      739
+Scores:             739, 739
+Record:             Win, Win
+Average Moves:      60
+Moves:              60, 60
+
+
+PLAYING IN MAP:     smallClassic
+Average Score:      3352
+Scores:             3352, 3352
+Record:             Win, Win
+Average Moves:      47
+Moves:              47, 47
+
+
+PLAYING IN MAP:     smallHunt
+Average Score:      773
+Scores:             773, 773
+Record:             Win, Win
+Average Moves:      26
+Moves:              26, 26
+
+
+PLAYING IN MAP:     testClassic
+Average Score:      986
+Scores:             986, 986
+Record:             Win, Win
+Average Moves:      13
+Moves:              13, 13
+
+
+PLAYING IN MAP:     trappedClassic
+Average Score:      1979
+Scores:             1979, 1979
+Record:             Win, Win
+Average Moves:      20
+Moves:              20, 20
+
+
