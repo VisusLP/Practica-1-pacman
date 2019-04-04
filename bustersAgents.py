@@ -227,7 +227,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         global prevState
         
         # Intentamos abrir el archivo de salida, si no existe, lo creamos usando createWekaFile()
-        if(os.path.isfile("test_othermaps_keyboard_score5.arff") == False):
+        if(os.path.isfile("training_tutorial1.arff") == False):
             attributesList = [["distNorth","NUMERIC"],["distSouth","NUMERIC"],["distEast","NUMERIC"],["distWest","NUMERIC"], 
             ["Score","NUMERIC"],["NextScore","NUMERIC"],["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
@@ -240,7 +240,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             # Cada vez vamos a sacar 9 elementos de la lista (8 atributos + "\n")
             counter = 9
             # Abrimos el archivo de salida
-            file = open("test_othermaps_keyboard_score5.arff", "a")
+            file = open("training_tutorial1.arff", "a")
             # Obtenemos la puntuacion actual, para usarla de valor predecido
             prevState[5] = gameState.getScore()
             while(counter > 0):
@@ -273,9 +273,9 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
     def createWekaFile(self, attributesList):
         # Abrimos el archivo en modo append, para que no se sobreescriba el archivo
-        file = open("test_othermaps_keyboard_score5.arff", "a")
+        file = open("training_tutorial1.arff", "a")
         # Escribimos la cabecera del archivo
-        file.write("@RELATION 'test_othermaps_keyboard_score5'\n\n")
+        file.write("@RELATION 'training_tutorial1'\n\n")
         # Escribimos todos los atributos
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
@@ -663,7 +663,7 @@ class BasicAgentAA(BustersAgent):
         # -----------------------------------------------------------------------------------------------
 
         # Pasamos los datos necesarios a Weka para que los clasifique
-        a = self.weka.predict("./Models/Classification/Keyboard/othermaps/noFood_noScore + RemoveDuplicates/LMT.model", x, "./training_keyboard_noFood_noScore.arff")
+        a = self.weka.predict("./Models\Classification\Tutorial1\Samemaps\Unfiltered\LMT.model", x, "./training_keyboard_noNextScore.arff")
         
         # ------ Estas lineas sirven para evitar que el agente automatico entre en un bucle infinito ----------
         # El bug se produce cuando no se puede hacer la acción "East" y la accion "South" es mejor que "North"
@@ -672,14 +672,14 @@ class BasicAgentAA(BustersAgent):
         # -----------------------------------------------------------------------------------------------------
 
         # ------ Estas lineas sirven para que el agente automatico de teclado no haga acciones ilegales -------
-        if (a == 'East' and distEast == 99999):
+        """ if (a == 'East' and distEast == 99999):
             a = 'Stop'
         elif (a == 'West' and distWest == 99999):
             a = 'Stop'
         elif (a == 'North' and distNorth == 99999):
             a = 'Stop'
         elif (a == 'South' and distSouth == 99999):
-            a = 'Stop'
+            a = 'Stop' """
         # ------------------------------------------------------------------------------------------------------
         # Se almacena last_move para usarla en otras funciones
         last_move = a
@@ -692,7 +692,7 @@ class BasicAgentAA(BustersAgent):
         global prevState
         
         # Intentamos abrir el archivo de salida, si no existe, lo creamos usando createWekaFile()
-        if(os.path.isfile("test_othermaps_keyboard_score5.arff") == False):
+        if(os.path.isfile("training_tutorial1.arff") == False):
             attributesList = [["distNorth","NUMERIC"],["distSouth","NUMERIC"],["distEast","NUMERIC"],["distWest","NUMERIC"], 
             ["Score","NUMERIC"],["NextScore","NUMERIC"],["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
@@ -702,7 +702,7 @@ class BasicAgentAA(BustersAgent):
             # Cada vez vamos a sacar 9 elementos de la lista (8 atributos + "\n")
             counter = 9
             # Abrimos el archivo de salida
-            file = open("test_othermaps_keyboard_score5.arff", "a")
+            file = open("training_tutorial1.arff", "a")
             # Obtenemos la puntuacion actual, para usarla de valor predecido
             prevState[5] = gameState.getScore()
             while(counter > 0):
@@ -733,8 +733,12 @@ class BasicAgentAA(BustersAgent):
         prevState.append("\n")
 
     def createWekaFile(self, attributesList):
-        file = open("test_othermaps_score10.arff", "a")
-        file.write("@RELATION 'test_othermaps_score10'\n\n")
+        # Abrimos el archivo en modo append, para que no se sobreescriba el archivo
+        file = open("training_tutorial1.arff", "a")
+        # Escribimos la cabecera del archivo
+        file.write("@RELATION 'training_tutorial1'\n\n")
+        # Escribimos todos los atributos
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
+        # Escribimos el indicador de que empiezan los datos
         file.write("\n@data\n")
