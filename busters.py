@@ -613,7 +613,7 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         print '\nPLAYING IN MAP:    ', layoutName
         print 'Average Score:     ', sum(scores) / float(len(scores))
         print 'Scores:            ', ', '.join([str(score) for score in scores])
-        print 'Win Rate:          %d/%d (%.2f)' % (wins.count(True), len(wins), winRate)
+        print 'Win Rate:           %d/%d (%.2f)' % (wins.count(True), len(wins), winRate)
         print 'Record:            ', ', '.join([ ['Loss', 'Win'][int(w)] for w in wins])
         print 'Average Moves:     ', sum(avgMoves)/float(len(avgMoves))
         print 'Moves:             ', ', '.join([str(avgMoves) for avgMoves in avgMoves])
@@ -627,7 +627,7 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         result.write(', '.join([ ['Loss', 'Win'][int(w)] for w in wins]))
         result.write("\n")
         averageMoves = sum(movesBuff) / float(len(movesBuff))
-        result.write("Average Moves:      %d\n" % averageMoves)
+        result.write("Average Moves:      %f\n" % averageMoves)
         result.write("Moves:              ")
         result.write(', '.join([str(movesBuff) for movesBuff in movesBuff]))
         result.write("\n\n\n")
