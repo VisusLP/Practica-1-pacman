@@ -23,7 +23,7 @@ import os
 
 last_move = "Stop"
 prevState = []
-predictN = 1
+predictN = 5
 distWest = 0
 distEast = 0
 distNorth = 0
@@ -201,7 +201,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         global predictN
         global prevState
 
-        if(os.path.isfile("test_othermaps_keyboard.arff") == False):
+        if(os.path.isfile("test_othermaps_keyboard_score5.arff") == False):
             attributesList = [["distNorth","NUMERIC"],["distSouth","NUMERIC"],["distEast","NUMERIC"],["distWest","NUMERIC"], 
             ["Score","NUMERIC"],["NextScore","NUMERIC"],["NearestFood","NUMERIC"],["lastMove","{North,South,East,West,Stop}"]]
             self.createWekaFile(attributesList)
@@ -209,7 +209,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         self.distancer = Distancer(gameState.data.layout, False)
         if self.countActions > predictN:
             counter = 9
-            file = open("test_othermaps_keyboard.arff", "a")
+            file = open("test_othermaps_keyboard_score5.arff", "a")
             prevState[5] = gameState.getScore()
             while(counter > 0):
                 x = prevState.pop(0);               
@@ -234,8 +234,8 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
 
 
     def createWekaFile(self, attributesList):
-        file = open("test_othermaps_keyboard.arff", "a")
-        file.write("@RELATION 'test_othermaps_keyboard'\n\n")
+        file = open("test_othermaps_keyboard_score5.arff", "a")
+        file.write("@RELATION 'test_othermaps_keyboard_score5'\n\n")
         for l in attributesList:
             file.write("@ATTRIBUTE %s %s\n" % (l[0], l[1]))
         file.write("\n@data\n")
