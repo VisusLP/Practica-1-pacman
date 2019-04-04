@@ -146,7 +146,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         self.countActions = self.countActions + 1
         last_move = KeyboardAgent.getAction(self, gameState)
 
-        # Almacenamos en variables una serie de datos útiles
+        # Almacenamos en variables una serie de datos utiles
         legal = gameState.getLegalActions(0) ##Legal position from the pacman
         posPacman = gameState.getPacmanPosition()
         walls = gameState.getWalls()
@@ -161,7 +161,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distNorth:
@@ -178,7 +178,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distSouth:
@@ -195,7 +195,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distEast:
@@ -212,7 +212,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distWest:
@@ -247,7 +247,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                 # Usamos pop para sacar uno a uno los elementos de la lista y escribirlos en el archivo de salida
                 x = prevState.pop(0);
                 file.write("%s" % (x))
-                # Imprimimos comas entre atributos excepto entre los 2 últimos (last_move y "\n")
+                # Imprimimos comas entre atributos excepto entre los 2 ultimos (last_move y "\n")
                 if counter > 2:
                     file.write(",")
                 counter -= 1
@@ -258,7 +258,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         prevState.append(distSouth)
         prevState.append(distEast)
         prevState.append(distWest)
-        # Metemos en la lista la puntuación actual, y un placeholder para nextScore
+        # Metemos en la lista la puntuacion actual, y un placeholder para nextScore
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
         # Metemos en la lista la distancia a la comida mas cercana, si no hay, metemos 99999 en su lugar
@@ -464,12 +464,12 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for x in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia actual es menor o igual que la previa de este movimiento, se sobreescribe
                         if self.distancer.getDistance(x, buffPacman) <= distNorth:
                             distNorth = self.distancer.getDistance(x, buffPacman)
-                            # Se comprueba si la distancia es menor que la mínima de todas las acciones
+                            # Se comprueba si la distancia es menor que la minima de todas las acciones
                             if distNorth < minDist:
                                 # Se sobreescribe y se cambia el movimiento a realizar
                                 minDist = distNorth
@@ -491,12 +491,12 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for x in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia actual es menor o igual que la previa de este movimiento, se sobreescribe
                          if self.distancer.getDistance(x, buffPacman) <= distSouth:
                             distSouth = self.distancer.getDistance(x, buffPacman)
-                            # Se comprueba si la distancia es menor que la mínima de todas las acciones
+                            # Se comprueba si la distancia es menor que la minima de todas las acciones
                             if distSouth < minDist:
                                 # Se sobreescribe y se cambia el movimiento a realizar
                                 minDist = distSouth
@@ -518,12 +518,12 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for x in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia actual es menor o igual que la previa de este movimiento, se sobreescribe
                         if self.distancer.getDistance(x, buffPacman) <= distEast:
                             distEast = self.distancer.getDistance(x, buffPacman)
-                            # Se comprueba si la distancia es menor que la mínima de todas las acciones
+                            # Se comprueba si la distancia es menor que la minima de todas las acciones
                             if distEast < minDist:
                                 # Se sobreescribe y se cambia el movimiento a realizar
                                 minDist = distEast
@@ -545,12 +545,12 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for x in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia actual es menor o igual que la previa de este movimiento, se sobreescribe
                         if self.distancer.getDistance(x, buffPacman) <= distWest:
                             distWest = self.distancer.getDistance(x, buffPacman)
-                            # Se comprueba si la distancia es menor que la mínima de todas las acciones
+                            # Se comprueba si la distancia es menor que la minima de todas las acciones
                             if distWest < minDist:
                                 # Se sobreescribe y se cambia el movimiento a realizar
                                 minDist = distWest
@@ -574,7 +574,7 @@ class BasicAgentAA(BustersAgent):
         distNorth = 99999
         distSouth = 99999
         
-        # Almacenamos en variables una serie de datos útiles
+        # Almacenamos en variables una serie de datos utiles
         legal = gameState.getLegalActions(0) ##Legal position from the pacman
         posPacman = gameState.getPacmanPosition()
         walls = gameState.getWalls()
@@ -589,7 +589,7 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distNorth:
@@ -606,7 +606,7 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distSouth:
@@ -623,7 +623,7 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distEast:
@@ -640,7 +640,7 @@ class BasicAgentAA(BustersAgent):
             if walls[buffPacman[0]][buffPacman[1]] == False:
                 # Itera sobre los fantasmas
                 for g in gameState.getGhostPositions():
-                    # Comprueba que los fantasmas están vivos
+                    # Comprueba que los fantasmas estan vivos
                     if livingGhosts[iterator] == True:
                         # Si la distancia minima actual es menor que la almacenada, se sobreescribe
                         if self.distancer.getDistance(g, buffPacman) < distWest:
@@ -653,7 +653,7 @@ class BasicAgentAA(BustersAgent):
         x.append(distEast)
         x.append(distWest)
         # -------------------------- COMMENT THIS PART IF USING NoFood_NoScore --------------------------
-        # Metemos en la lista la puntuación
+        # Metemos en la lista la puntuacion
         x.append(gameState.getScore())
         # Metemos en la lista la distancia a la comida mas cercana, si no hay, metemos 99999 en su lugar
         if (gameState.getDistanceNearestFood() == None):
@@ -663,10 +663,10 @@ class BasicAgentAA(BustersAgent):
         # -----------------------------------------------------------------------------------------------
 
         # Pasamos los datos necesarios a Weka para que los clasifique
-        a = self.weka.predict("./Models\Classification\Tutorial1\Samemaps\Unfiltered\LMT.model", x, "./training_keyboard_noNextScore.arff")
+        a = self.weka.predict("./Models/Classification/Tutorial1/Samemaps/Unfiltered/LMT.model", x, "./Training/training_tutorial1_noNextScore.arff")
         
         # ------ Estas lineas sirven para evitar que el agente automatico entre en un bucle infinito ----------
-        # El bug se produce cuando no se puede hacer la acción "East" y la accion "South" es mejor que "North"
+        # El bug se produce cuando no se puede hacer la accion "East" y la accion "South" es mejor que "North"
         """ if (distEast == 99999 and distNorth > distSouth and a == 'North'):
             a = 'South' """
         # -----------------------------------------------------------------------------------------------------
@@ -709,7 +709,7 @@ class BasicAgentAA(BustersAgent):
                 # Usamos pop para sacar uno a uno los elementos de la lista y escribirlos en el archivo de salida
                 x = prevState.pop(0);
                 file.write("%s" % (x))
-                # Imprimimos comas entre atributos excepto entre los 2 últimos (last_move y "\n")
+                # Imprimimos comas entre atributos excepto entre los 2 ultimos (last_move y "\n")
                 if counter > 2:
                     file.write(",")
                 counter -= 1
@@ -720,7 +720,7 @@ class BasicAgentAA(BustersAgent):
         prevState.append(distSouth)
         prevState.append(distEast)
         prevState.append(distWest)
-        # Metemos en la lista la puntuación actual, y un placeholder para nextScore
+        # Metemos en la lista la puntuacion actual, y un placeholder para nextScore
         prevState.append(gameState.getScore())
         prevState.append(gameState.getScore()-1)
         # Metemos en la lista la distancia a la comida mas cercana, si no hay, metemos 99999 en su lugar
