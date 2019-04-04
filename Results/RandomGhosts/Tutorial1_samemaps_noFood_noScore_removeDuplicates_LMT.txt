@@ -1,144 +1,142 @@
 PLAYING IN MAP:     newmap
-Average Score:      757
-Scores:             761, 759, 758, 750, 754, 761, 753, 754, 760, 762
+Average Score:      754
+Scores:             763, 753, 753, 758, 759, 753, 750, 755, 748, 757
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      42
-Moves:              38, 41, 41, 49, 45, 38, 46, 46, 39, 37
+Average Moves:      44.400000
+Moves:              37, 46, 46, 41, 40, 46, 50, 44, 51, 43
 
 
 PLAYING IN MAP:     oneHunt
-Average Score:      756
-Scores:             774, 754, 762, 758, 747, 737, 752, 756, 747, 775
+Average Score:      761
+Scores:             770, 760, 766, 756, 766, 757, 756, 748, 759, 778
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      42
-Moves:              25, 45, 37, 41, 52, 62, 47, 43, 52, 24
+Average Moves:      37.400000
+Moves:              29, 39, 33, 43, 33, 42, 43, 51, 40, 21
 
 
 PLAYING IN MAP:     openClassic
-Average Score:      2773
-Scores:             1861, 2170, 3245, 2955, 3151, 3149, 2553, 3247, 2555, 2844
+Average Score:      2673
+Scores:             2659, 2453, 3448, 2959, 3238, 3058, 2454, 2057, 2167, 2244
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      46
-Moves:              38, 29, 54, 44, 48, 50, 47, 52, 44, 55
+Average Moves:      45.700000
+Moves:              41, 47, 51, 40, 61, 42, 45, 43, 32, 55
 
 
 PLAYING IN MAP:     openHunt
-Average Score:      805
-Scores:             762, 766, 858, 869, 767, 871, 766, 877, 760, 761
+Average Score:      838
+Scores:             778, 855, 956, 855, 862, 756, 845, 854, 770, 855
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      33
-Moves:              37, 33, 42, 31, 33, 28, 33, 23, 39, 39
+Average Moves:      40.600000
+Moves:              21, 44, 43, 45, 37, 43, 54, 45, 30, 44
 
 
 PLAYING IN MAP:     originalClassic
-Average Score:      2771
-Scores:             2662, 2666, 2657, 2669, 3749, 2664, 2665, 2664, 2660, 2660
+Average Score:      2788
+Scores:             2750, 2667, 3353, 2667, 2654, 2653, 2763, 2666, 2665, 3051
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      37
-Moves:              37, 33, 42, 30, 50, 36, 34, 35, 39, 39
+Average Moves:      40.100000
+Moves:              49, 32, 46, 32, 45, 46, 36, 33, 34, 48
 
 
 PLAYING IN MAP:     20Hunt
-Average Score:      771
-Scores:             774, 772, 772, 777, 767, 763, 771, 776, 770, 773
+Average Score:      772
+Scores:             774, 765, 766, 770, 770, 775, 781, 778, 774, 775
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      27
-Moves:              25, 27, 27, 22, 32, 36, 29, 23, 29, 26
+Average Moves:      26.200000
+Moves:              25, 34, 33, 29, 29, 24, 18, 21, 25, 24
 
 
 PLAYING IN MAP:     bigHunt
-Average Score:      724
-Scores:             717, 733, 723, 726, 726, 728, 728, 715, 724, 729
+Average Score:      731
+Scores:             732, 726, 747, 731, 729, 718, 724, 721, 745, 738
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      74
-Moves:              82, 67, 76, 74, 73, 71, 72, 84, 76, 71
+Average Moves:      68.200000
+Moves:              67, 74, 53, 69, 70, 81, 75, 78, 54, 61
 
 
 PLAYING IN MAP:     capsuleClassic
-Average Score:      2218
-Scores:             2272, 2272, 2060, 1874, 2670, 2270, 2469, 1963, 1868, 2466
+Average Score:      2132
+Scores:             2771, 2171, 2177, 1775, 1677, 2371, 2272, 1770, 2072, 2268
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      30
-Moves:              28, 27, 39, 25, 29, 30, 30, 36, 31, 34
+Average Moves:      26.900000
+Moves:              29, 28, 22, 24, 22, 28, 28, 29, 28, 31
 
 
 PLAYING IN MAP:     classic
 Average Score:      762
-Scores:             766, 766, 770, 764, 759, 768, 744, 768, 759, 763
+Scores:             766, 768, 764, 758, 761, 754, 756, 763, 769, 766
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      36
-Moves:              33, 33, 29, 35, 40, 31, 56, 31, 40, 36
+Average Moves:      36.600000
+Moves:              33, 32, 35, 41, 38, 45, 43, 36, 30, 33
 
 
 PLAYING IN MAP:     contestClassic
-Average Score:      2416
-Scores:             2177, 2673, 1685, 2082, 3168, 2870, 2279, 2967, 2280, 1982
+Average Score:      1991
+Scores:             2376, 1682, 1981, 1981, 1686, 1982, 1785, 1884, 2867, 1686
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      23
-Moves:              22, 26, 14, 17, 32, 29, 21, 32, 19, 18
+Average Moves:      18.100000
+Moves:              23, 18, 18, 18, 13, 17, 14, 15, 32, 13
 
 
 PLAYING IN MAP:     mediumClassic
-Average Score:      3339
-Scores:             3173, 3267, 2879, 3472, 2576, 3272, 3960, 3667, 3368, 3757
+Average Score:      3328
+Scores:             4045, 3962, 3468, 3074, 3075, 3270, 2972, 3270, 3074, 3073
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      30
-Moves:              26, 32, 21, 27, 24, 28, 39, 32, 31, 42
+Average Moves:      31.100000
+Moves:              54, 37, 31, 26, 25, 29, 28, 30, 25, 26
 
 
 PLAYING IN MAP:     mimapa
-Average Score:      792
-Scores:             795, 791, 793, 790, 793, 791, 791, 792, 794, 792
+Average Score:      791
+Scores:             789, 793, 790, 794, 785, 790, 793, 794, 793, 791
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      6
-Moves:              4, 8, 6, 9, 6, 8, 8, 7, 5, 7
+Average Moves:      7.800000
+Moves:              10, 6, 9, 5, 14, 9, 6, 5, 6, 8
 
 
 PLAYING IN MAP:     sixHunt
 Average Score:      734
-Scores:             738, 744, 735, 744, 722, 733, 716, 737, 740, 736
+Scores:             724, 744, 735, 726, 735, 734, 732, 732, 740, 742
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      64
-Moves:              61, 55, 64, 55, 78, 66, 84, 62, 59, 64
+Average Moves:      64.700000
+Moves:              75, 55, 64, 73, 64, 65, 67, 67, 59, 58
 
 
 PLAYING IN MAP:     smallClassic
-Average Score:      3353
-Scores:             2576, 3966, 3454, 4256, 2668, 3168, 3564, 3368, 3159, 3358
+Average Score:      3375
+Scores:             3666, 2468, 2862, 4167, 3265, 3366, 2873, 2960, 4163, 3961
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      35
-Moves:              23, 34, 46, 43, 32, 32, 35, 31, 40, 41
+Average Moves:      34.400000
+Moves:              34, 32, 38, 32, 35, 33, 27, 39, 36, 38
 
 
 PLAYING IN MAP:     smallHunt
-Average Score:      776
-Scores:             782, 767, 765, 775, 779, 779, 778, 776, 777, 782
+Average Score:      768
+Scores:             767, 774, 779, 767, 770, 764, 761, 767, 768, 772
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      23
-Moves:              17, 32, 34, 24, 21, 20, 22, 23, 23, 17
+Average Moves:      30.300000
+Moves:              33, 25, 20, 32, 29, 35, 38, 33, 31, 27
 
 
 PLAYING IN MAP:     testClassic
-Average Score:      974
-Scores:             1083, 884, 882, 985, 1181, 986, 982, 981, 993, 789
+Average Score:      1003
+Scores:             1084, 981, 985, 992, 979, 971, 1086, 886, 1085, 990
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      14
-Moves:              16, 15, 17, 14, 18, 14, 17, 18, 6, 10
+Average Moves:      15.200000
+Moves:              15, 18, 14, 7, 20, 28, 13, 13, 14, 10
 
 
 PLAYING IN MAP:     trappedClassic
-Average Score:      1740
-Scores:             1176, 2185, 1781, 1580, 1779, 1379, 1785, 2179, 1777, 1780
+Average Score:      1799
+Scores:             2577, 983, 2178, 1778, 1982, 1779, 1977, 978, 1579, 2181
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      19
-Moves:              23, 14, 18, 19, 20, 20, 14, 21, 23, 20
+Average Moves:      20.000000
+Moves:              22, 17, 21, 21, 17, 20, 22, 22, 20, 18
 
 
 PLAYING IN MAP:     trickyClassic
-Average Score:      1963
-Scores:             1687, 1689, 1687, 1884, 2081, 2077, 1785, 1686, 3275, 1785
+Average Score:      1973
+Scores:             1684, 1686, 1885, 2478, 2180, 2182, 1884, 1686, 1984, 2081
 Record:             Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
-Average Moves:      15
-Moves:              12, 10, 13, 15, 18, 22, 14, 13, 24, 14
-
-
+Average Moves:      16.100000
+Moves:              15, 13, 14, 21, 20, 17, 15, 13, 15, 18

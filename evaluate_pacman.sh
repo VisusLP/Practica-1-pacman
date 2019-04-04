@@ -15,4 +15,4 @@ python busters.py -p BasicAgentAA -g RandomGhost -l smallClassic -n 10 && #Bad f
 python busters.py -p BasicAgentAA -g RandomGhost -l smallHunt -n 10 &&
 python busters.py -p BasicAgentAA -g RandomGhost -l testClassic -n 10 &&
 python busters.py -p BasicAgentAA -g RandomGhost -l trappedClassic -n 10 && #Bad for training
-python busters.py -p BasicAgentAA -g RandomGhost -l trickyClassic -n 10 #Bad for trainingfor training
+python busters.py -p BasicAgentAA -g RandomGhost -l trickyClassic -n 10 #Bad for training

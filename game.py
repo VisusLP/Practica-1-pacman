@@ -23,7 +23,6 @@ from util import *
 import time, os
 import traceback
 import sys
-from wekaI import Weka
 
 
 #######################
@@ -689,6 +688,7 @@ class Game:
                 action = agent.getAction(observation)
             self.unmute()
             
+            # Estas lineas sirven para activar la funcion printLineData().
             """ if agentIndex == 0:
                agent.printLineData(self.state) """
             
@@ -733,5 +733,6 @@ class Game:
                     self.unmute()
                     return
         self.display.finish()
+        # Estas lineas sirven para cerrar Weka al terminar una partida, y asi poder introducir mas comandos
         """ self.weka = Weka()
         self.weka.stop_jvm() """

@@ -281,7 +281,7 @@ class GameState:
         else: # Initial state
             self.data = GameStateData()
             self.numMoves = 0;
-            self.maxMoves = -1;
+            self.maxMoves = 300;
             self.data.ghostDistances = []
 
     def deepCopy( self ):
@@ -344,7 +344,7 @@ class BustersGameRules:
     and how the game starts and ends.
     """
 
-    def newGame( self, layout, pacmanAgent, ghostAgents, display, maxMoves= -1 ):
+    def newGame( self, layout, pacmanAgent, ghostAgents, display, maxMoves= 300 ):
         agents = [pacmanAgent] + ghostAgents
         initState = GameState()
         initState.initialize( layout, len(ghostAgents))
@@ -590,7 +590,7 @@ def loadAgent(pacman, nographics):
                 return getattr(module, pacman)
     raise Exception('The agent ' + pacman + ' is not specified in any *Agents.py.')
 
-def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
+def runGames( layout, pacman, ghosts, display, numGames, maxMoves=300):
     # Hack for agents writing to the display
     import __main__
     __main__.__dict__['_display'] = display
@@ -604,7 +604,6 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         games.append(game)
 
     if numGames > 1:
-        result = open("Results/Game history.txt", "a")
         scores = [game.state.getScore() for game in games]
         wins = [game.state.isWin() for game in games]
         winRate = wins.count(True)/ float(len(wins))
@@ -618,7 +617,8 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         print 'Average Moves:     ', sum(avgMoves)/float(len(avgMoves))
         print 'Moves:             ', ', '.join([str(avgMoves) for avgMoves in avgMoves])
 
-
+        # Esta parte sirve para almacenar los datos de partidas jugadas en un archivo a definir
+        """ result = open("Results/Game history.txt", "a")
         result.write("PLAYING IN MAP:     %s\n" % layoutName)
         averageScore = sum(scores) / float(len(scores))
         result.write("Average Score:      %d\n" % averageScore)
@@ -631,10 +631,10 @@ def runGames( layout, pacman, ghosts, display, numGames, maxMoves=-1):
         result.write("Moves:              ")
         result.write(', '.join([str(movesBuff) for movesBuff in movesBuff]))
         result.write("\n\n\n")
-        result.close()
-
-    weka = Weka()
-    weka.stop_jvm()
+        result.close() """
+    # Si ya se han terminado todas las partidas, cerramos Weka para poder recibir otro comando
+    """ weka = Weka()
+    weka.stop_jvm() """
 
     return games
 

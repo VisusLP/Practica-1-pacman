@@ -1,0 +1,142 @@
+PLAYING IN MAP:     newmap
+Average Score:      751
+Scores:             742, 753, 755, 754
+Record:             Win, Win, Win, Win
+Average Moves:      48.500000
+Moves:              58, 47, 44, 45
+
+
+PLAYING IN MAP:     oneHunt
+Average Score:      769
+Scores:             767, 779, 758, 772
+Record:             Win, Win, Win, Win
+Average Moves:      30.000000
+Moves:              32, 20, 41, 27
+
+
+PLAYING IN MAP:     openClassic
+Average Score:      2391
+Scores:             2565, 2561, 2170, 2269
+Record:             Win, Win, Win, Win
+Average Moves:      32.750000
+Moves:              34, 38, 29, 30
+
+
+PLAYING IN MAP:     openHunt
+Average Score:      50
+Scores:             300, -100, 100, -100
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     originalClassic
+Average Score:      0
+Scores:             0, 0, 0, 0
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     20Hunt
+Average Score:      -300
+Scores:             -300, -300, -300, -300
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     bigHunt
+Average Score:      -300
+Scores:             -300, -300, -300, -300
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     capsuleClassic
+Average Score:      1750
+Scores:             2400, 1600, 1400, 1600
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     classic
+Average Score:      -250
+Scores:             -300, -300, -100, -300
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     contestClassic
+Average Score:      950
+Scores:             400, 800, 1200, 1400
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     mediumClassic
+Average Score:      3105
+Scores:             3458, 2958, 3000, 3007
+Record:             Win, Win, Loss, Win
+Average Moves:      118.750000
+Moves:              41, 42, 300, 92
+
+
+PLAYING IN MAP:     mimapa
+Average Score:      791
+Scores:             789, 794, 791, 791
+Record:             Win, Win, Win, Win
+Average Moves:      7.750000
+Moves:              10, 5, 8, 8
+
+
+PLAYING IN MAP:     sixHunt
+Average Score:      -250
+Scores:             -300, -300, -300, -100
+Record:             Loss, Loss, Loss, Loss
+Average Moves:      300.000000
+Moves:              300, 300, 300, 300
+
+
+PLAYING IN MAP:     smallClassic
+Average Score:      2144
+Scores:             3258, 1200, 1700, 2418
+Record:             Win, Loss, Loss, Win
+Average Moves:      255.500000
+Moves:              141, 300, 300, 281
+
+
+PLAYING IN MAP:     smallHunt
+Average Score:      157
+Scores:             -100, 100, 531, 100
+Record:             Loss, Loss, Win, Loss
+Average Moves:      292.000000
+Moves:              300, 300, 268, 300
+
+
+PLAYING IN MAP:     testClassic
+Average Score:      884
+Scores:             878, 976, 764, 921
+Record:             Win, Win, Win, Win
+Average Moves:      89.500000
+Moves:              122, 23, 135, 78
+
+
+PLAYING IN MAP:     trappedClassic
+Average Score:      9543
+Scores:             7173, 9800, 11800, 9400
+Record:             Win, Loss, Loss, Loss
+Average Moves:      256.750000
+Moves:              127, 300, 300, 300
+
+
+PLAYING IN MAP:     trickyClassic
+Average Score:      1785
+Scores:             1873, 1785, 1600, 1884
+Record:             Win, Win, Loss, Win
+Average Moves:      88.750000
+Moves:              26, 14, 300, 15
